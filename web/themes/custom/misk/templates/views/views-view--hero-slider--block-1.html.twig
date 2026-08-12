@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Renders the Hero Slider view's block through the single misk:heroslider
+ * SDC component (see misk_preprocess_views_view__hero_slider__block_1() in
+ * misk.theme, which builds the `heroslider_build` render array from the
+ * view's results) instead of Views' normal per-row output.
+ */
+#}
+<div{{ attributes }}>
+  {{ heroslider_build }}
+</div>

@@ -1,0 +1,31 @@
+.hero-carousel {
+  .carousel-indicators {
+    .carousel-dot {
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      background-repeat: no-repeat;
+      background-image: url("/pictures/VectorEmpty.svg");
+
+      &.active {
+        background-image: url("/pictures/Vector.svg");
+      }
+    }
+  }
+
+  .carousel-slide {
+    height: 60vh;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 2.22%,
+        rgba(0, 0, 0, 0.5) 73.4%
+      );
+      pointer-events: none;
+    }
+  }
+}

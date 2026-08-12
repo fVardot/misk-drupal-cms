@@ -1,0 +1,48 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Heroslider
+description: 'A Bootstrap 5 image carousel with a title caption per slide and custom dot indicators.'
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: 'Heroslider ID'
+      description: 'Set a unique id on the heroslider, especially if the page uses multiple hero sliders.'
+    interval:
+      type: number
+      title: Interval
+      description: 'The amount of time (ms) to delay between automatically cycling to the next slide.'
+      default: 20000
+      examples:
+        - 20000
+    touch:
+      type: boolean
+      title: Touch
+      description: 'Whether the carousel should support left/right swipe interactions on touchscreen devices.'
+      default: true
+      examples:
+        - true
+    ride:
+      type: string
+      title: Ride
+      description: 'If set to `true`, autoplays after the user manually cycles the first slide. If set to `carousel`, autoplays on load.'
+      default: carousel
+      examples:
+        - carousel
+      enum:
+        - 'true'
+        - carousel
+    items:
+      type: array
+      title: Slides
+      description: 'An array of slides, each with an `image` URL and a `title`.'
+      default: []
+      items:
+        type: object
+        properties:
+          image:
+            type: string
+            title: 'Slide image URL'
+          title:
+            type: string
+            title: 'Slide title'

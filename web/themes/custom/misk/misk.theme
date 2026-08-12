@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the SASS Starterkit subtheme.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_views_view__HOOK() for the hero_slider view.
+ *
+ * Renders the view's results through the single misk:heroslider SDC
+ * component instead of the normal per-row field output, since the
+ * component expects one `items` array prop, not row-by-row markup.
+ */
+function misk_preprocess_views_view__hero_slider__block_1(array &$variables) {
+  $items = [];
+  foreach ($variables['view']->result as $row) {
+    $node = $row->_entity;
+    if (!$node instanceof NodeInterface) {
+      continue;
+    }
+    $items[] = [
+      'image' => _misk_hero_slider_image_url($node),
+      'title' => $node->label(),
+    ];
+  }
+
+  $variables['heroslider_build'] = [
+    '#type' => 'component',
+    '#component' => 'misk:heroslider',
+    '#props' => [
+      'items' => $items,
+    ],
+  ];
+}
+
+/**
+ * Resolves a Hero Slider node's field_image to a file URL.
+ */
+function _misk_hero_slider_image_url(NodeInterface $node): ?string {
+  if (!$node->hasField('field_image') || $node->get('field_image')->isEmpty()) {
+    return NULL;
+  }
+  $media = $node->get('field_image')->entity;
+  if (!$media || !$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
+    return NULL;
+  }
+  $file = $media->get('field_media_image')->entity;
+  if (!$file) {
+    return NULL;
+  }
+  return \Drupal::service('file_url_generator')->generateString($file->getFileUri());
+}
+
+/**
+ * Implements hook_form_system_theme_settings_alter() for settings form.
+ *
+ * Replace Bootstrap setting options with subtheme ones.
+ */
+function misk_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
+  $form['components']['navbar']['bootstrap_navbar_top_background']['#options'] = array(
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  );
+  $form['components']['navbar']['bootstrap_navbar_background']['#options'] = array(
+    'bg-primary' => t('Primary'),
+    'bg-secondary' => t('Secondary'),
+    'bg-light' => t('Light'),
+    'bg-dark' => t('Dark'),
+    'bg-white' => t('White'),
+    'bg-transparent' => t('Transparent'),
+  );
+}

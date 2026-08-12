@@ -1,0 +1,17 @@
+<div class="card">
+  {% if image %}
+    <img src="{{ image }}" class="card-img-top" alt="{{ heading }}">
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">
+      {% if url %}
+        <a href="{{ url }}">{{ heading }}</a>
+      {% else %}
+        {{ heading }}
+      {% endif %}
+    </h5>
+    {% if body %}
+      <div class="card-text">{{ body }}</div>
+    {% endif %}
+  </div>
+</div>
