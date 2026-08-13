@@ -1,19 +1,30 @@
+.hero-carousel {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
 .hero-carousel .carousel-indicators .carousel-dot {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 18px;
   background-color: transparent;
   background-repeat: no-repeat;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none'%3E%3Ccircle cx='5' cy='5.5' r='4.5' stroke='white'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-position: center;
+  background-image: url("vector-empty.svg");
 }
-
 .hero-carousel .carousel-indicators .carousel-dot.active {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none'%3E%3Ccircle cx='5' cy='5.5' r='4.5' fill='white' stroke='white'/%3E%3C/svg%3E");
+  background-image: url("vector-active.svg");
 }
-
+.hero-carousel .hero-title {
+  font-weight: 800;
+}
 .hero-carousel .carousel-slide {
   height: 60vh;
+  width: 100%;
 }
-
 .hero-carousel .carousel-slide::after {
   content: "";
   position: absolute;

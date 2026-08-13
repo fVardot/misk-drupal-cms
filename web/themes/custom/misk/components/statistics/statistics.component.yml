@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Statistics
+description: 'A single animated stat: a prefix + value + suffix, with a label underneath. Place up to 3 of these beside each other inside a section (with its own background and title) to build a "stats at a glance" row.'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Label
+      default: ''
+      examples:
+        - 'Years of Experience'
+    prefix:
+      type: string
+      title: Prefix
+      default: ''
+    value:
+      type: number
+      title: Value
+      default: 0
+      examples:
+        - 15
+    suffix:
+      type: string
+      title: Suffix
+      default: ''
+      examples:
+        - '+'

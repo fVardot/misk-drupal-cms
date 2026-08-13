@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Statistics: a single animated stat (prefix + value + suffix + label).
+ * This renders only one stat, not the surrounding box — place a Section
+ * (background) with a Text title above it, then up to 3 of these beside
+ * each other inside it, to build a "stats at a glance" row. The value
+ * counts up from 0 when scrolled into view (see statistics.js).
+ *
+ * Available properties:
+ * - title: The label shown under the value.
+ * - prefix: Text shown before the value.
+ * - value: The number to count up to.
+ * - suffix: Text shown after the value.
+ */
+#}
+
+<div class="statistics d-flex flex-column align-items-center">
+  <div class="display-1 fw-semibold value statistics-value">{{ prefix }}{{ value }}{{ suffix }}</div>
+  <p class="text-white">{{ title }}</p>
+</div>

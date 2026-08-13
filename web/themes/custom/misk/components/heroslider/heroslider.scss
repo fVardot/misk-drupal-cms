@@ -1,20 +1,39 @@
 .hero-carousel {
+  // Break out of the page's centered Bootstrap .container ancestor
+  // (see web/themes/contrib/bootstrap/templates/layout/page.html.twig)
+  // so the hero spans the full browser width edge-to-edge.
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
   .carousel-indicators {
     .carousel-dot {
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 18px;
       background-color: transparent;
       background-repeat: no-repeat;
-      background-image: url("/pictures/VectorEmpty.svg");
+      background-size: contain;
+      background-position: center;
+      background-image: url("vector-empty.svg");
 
       &.active {
-        background-image: url("/pictures/Vector.svg");
+        background-image: url("vector-active.svg");
       }
     }
   }
 
+  .hero-title {
+    // No Bootstrap utility gives a true ExtraBold weight here: .fw-bold
+    // compiles to 700, .fw-bolder is just the relative `bolder` keyword.
+    font-weight: 800;
+  }
+
   .carousel-slide {
     height: 60vh;
+    width: 100%;
 
     &::after {
       content: "";

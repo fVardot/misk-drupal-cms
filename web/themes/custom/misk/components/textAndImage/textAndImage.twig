@@ -1,0 +1,19 @@
+<?php $imageFirst = empty($textAndImage['text_first']); ?>
+<div class="container-fluid mb-12 mb-sm-13">
+  <div class="row <?= $imageFirst ? '' : 'flex-row-reverse' ?>">
+    <div class="col-12 col-sm-4 leaders-img overflow-hidden px-0">
+      <img src="<?= htmlspecialchars(str_replace('/var/www/html/admin/', '', $image['img'])) ?>" alt="" class="w-100 h-100 object-fit-cover" />
+    </div>
+    <div class="col-12 col-sm-8 p-12 d-flex flex-column justify-content-center bg-primary position-relative">
+      <div class="container">
+        <div class="text-white">
+          <?= $textAndImage['text'] ?>
+        </div>
+        <a type="button" href="" class="read-more read-more--white text-white link-text-decoration-style">
+          <span class="read-more-text">Learn more</span><span class="read-more-icon"></span>
+        </a>
+        <div class="arrows-img position-absolute top-0 end-0 h-100"></div>
+      </div>
+    </div>
+  </div>
+</div>

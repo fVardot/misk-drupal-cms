@@ -1,0 +1,131 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Plain Text
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Plain text
+      description: Add text content. When Trim is disabled, the original text is shown as-is.
+      pattern: (.|\r?\n)*
+      default: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      examples:
+        - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    trim:
+      type: boolean
+      title: Trim
+      description: Enable smart trimming.
+      default: false
+      examples:
+        - false
+    trim_length:
+      type: integer
+      title: Trim length
+      description: Number of characters or words to keep.
+      default: 50
+      minimum: 0
+      examples:
+        - 50
+    trim_units:
+      type: string
+      title: Trim units
+      description: Choose whether trim length is measured in characters or words.
+      default: words
+      enum:
+        - characters
+        - words
+      examples:
+        - words
+    suffix:
+      type: string
+      title: Suffix
+      description: Text appended when content is trimmed.
+      default: '...'
+      examples:
+        - '...'
+        - ' Read more'
+    strip_html:
+      type: boolean
+      title: Strip HTML
+      description: Only works when Trim is enabled. If Trim is disabled, the original text is shown.
+      default: false
+      examples:
+        - false
+    text_style:
+      type: string
+      title: Text style
+      description: Choose a heading level, a display size, lead paragraph styling, or default body text.
+      default: default
+      enum:
+        - default
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+        - display-1
+        - display-2
+        - display-3
+        - display-4
+        - display-5
+        - display-6
+        - lead
+      examples:
+        - default
+      meta:enum:
+        default: 'Default (body text)'
+        h1: 'Heading 1'
+        h2: 'Heading 2'
+        h3: 'Heading 3'
+        h4: 'Heading 4'
+        h5: 'Heading 5'
+        h6: 'Heading 6'
+        display-1: 'Display 1'
+        display-2: 'Display 2'
+        display-3: 'Display 3'
+        display-4: 'Display 4'
+        display-5: 'Display 5'
+        display-6: 'Display 6'
+        lead: 'Lead (intro paragraph)'
+    text_color:
+      type: string
+      title: Text color
+      description: Bootstrap text color utility class.
+      default: default
+      enum:
+        - default
+        - text-primary
+        - text-primary-hover
+        - text-secondary
+        - text-success
+        - text-danger
+        - text-warning
+        - text-info
+        - text-light
+        - text-dark
+        - text-body
+        - text-body-secondary
+        - text-body-tertiary
+        - text-black
+        - text-white
+        - text-muted
+      examples:
+        - default
+      meta:enum:
+        default: 'Default (inherit)'
+        text-primary: Primary
+        text-primary-hover: 'Primary hover'
+        text-secondary: Secondary
+        text-success: Success
+        text-danger: Danger
+        text-warning: Warning
+        text-info: Info
+        text-light: Light
+        text-dark: Dark
+        text-body: Body
+        text-body-secondary: 'Body secondary'
+        text-body-tertiary: 'Body tertiary'
+        text-black: Black
+        text-white: White
+        text-muted: Muted

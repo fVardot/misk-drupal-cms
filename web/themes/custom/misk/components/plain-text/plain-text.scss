@@ -1,0 +1,8 @@
+// text-primary-hover isn't a real compiled Bootstrap utility, so it's
+// defined here directly, sourced from the actual $primary-hover variable.
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../scss/variables";
+
+.text-primary-hover {
+  color: $primary-hover;
+}

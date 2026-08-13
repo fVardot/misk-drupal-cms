@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 
+
 /**
  * Implements hook_preprocess_views_view__HOOK() for the hero_slider view.
  *

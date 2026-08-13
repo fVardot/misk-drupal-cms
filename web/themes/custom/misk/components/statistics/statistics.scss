@@ -1,0 +1,12 @@
+// The original design used a `text-primary-h` utility class, which isn't a
+// real compiled Bootstrap class in this theme ($theme-colors was never given
+// a "primary-h" key) — so the stat value color references $primary-hover
+// directly instead.
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../scss/variables";
+
+.statistics {
+  .statistics-value {
+    color: $primary-hover;
+  }
+}
