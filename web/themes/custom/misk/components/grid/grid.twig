@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Grid component.
+ */
+#}
+
+{% set grid_utility_classes = grid_utility_classes ?? [] %}
+
+{%
+  set classes = [
+    'grid',
+    'row',
+    'clearfix',
+  ]|merge(grid_utility_classes)
+%}
+
+{% set attributes = attributes.addClass(classes) %}
+
+<div{{ attributes }}>
+  {{ content }}
+</div>

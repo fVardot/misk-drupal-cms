@@ -1,8 +1,9 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+
 name: Card Logo
-description: A logo card with an optional link.
+description: A logo card with an image and optional link.
 group: Card
-noUI: true
+noUI: false
 
 props:
   type: object
@@ -11,40 +12,18 @@ props:
       $ref: json-schema-definitions://canvas.module/image
       type: object
       title: Logo image
-      description: Logo image shown inside the card.
+      description: Logo image displayed inside the card.
       examples:
-        - src: "/themes/contrib/vartheme_bs5/components/foundation/images/assets/full-logo-dark.svg"
-          alt: "Placeholder brand logo"
+        - src: "/components/foundation/images/assets/full-logo-dark.svg"
+          alt: "Brand logo"
           width: 600
           height: 240
 
     url:
       type: string
-      title: Link URL (optional)
+      title: Link path
+      description: The path or URL the logo links to.
       format: uri-reference
-      description: If provided, the whole card becomes clickable.
-
-    shadow:
-      type: string
-      title: Shadow
-      description: Adds depth to the card.
-      enum: [shadow-none, shadow-sm, shadow, shadow-lg]
-      default: shadow-none
-      examples: [shadow-none]
-      meta:enum:
-        shadow-none: No shadow
-        shadow-sm: Small shadow
-        shadow: Default shadow
-        shadow-lg: Large shadow
-
-    alignment:
-      type: string
-      title: Alignment
-      description: Horizontal alignment of the logo inside the card.
-      enum: [left, center, right]
-      default: left
-      examples: [left]
-      meta:enum:
-        left: Left
-        center: Center
-        right: Right
+      default: ""
+      examples:
+        - "/example"
