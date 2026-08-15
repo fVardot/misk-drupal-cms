@@ -3,11 +3,10 @@
   // (see web/themes/contrib/bootstrap/templates/layout/page.html.twig)
   // so the hero spans the full browser width edge-to-edge.
   position: relative;
-  left: 50%;
-  right: 50%;
-  width: 100vw;
-  margin-left: -50vw;
-  margin-right: -50vw;
+    width: 100vw;
+    max-width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
 
   .carousel-indicators {
     .carousel-dot {

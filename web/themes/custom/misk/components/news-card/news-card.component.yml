@@ -1,0 +1,26 @@
+name: News Card
+status: stable
+group: Misk
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+
+    image:
+      type: string
+      title: Image
+
+    image_alt:
+      type: string
+      title: Image alt text
+
+    date:
+      type: string
+      title: Date
+
+    url:
+      type: string
+      title: URL

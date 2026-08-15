@@ -1,0 +1,20 @@
+name: News Slider
+status: stable
+group: Misk
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      default: Featured News
+
+    view_all_url:
+      type: string
+      title: View all URL
+      default: /news
+
+slots:
+  news_items:
+    title: News items

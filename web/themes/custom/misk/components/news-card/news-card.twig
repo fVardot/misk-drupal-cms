@@ -1,0 +1,53 @@
+<article class="news-slide p-0 h-auto">
+
+  <div class="card border-0 w-100 rounded-4 overflow-hidden">
+
+    <div class="card-img-top slide-item mb-7 mb-sm-9
+      d-flex flex-column justify-content-end
+      position-relative overflow-hidden rounded-4">
+
+      {% if image %}
+        <img
+          src="{{ image }}"
+          alt="{{ image_alt }}"
+          class="position-absolute top-0 start-0 bottom-0 end-0
+            w-100 h-100 object-fit-cover"
+        >
+      {% endif %}
+
+      {% if date %}
+        <div class="date bg-primary rounded-pill align-self-start
+          text-white mb-10 ms-10 mb-sm-5 ms-sm-5 px-2 py-1">
+
+          {{ date }}
+
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="card-body w-100 px-0 py-3 d-flex flex-column">
+
+      {% if title %}
+        <h3 class="card-text fw-semibold mb-7 mb-sm-9">
+          {{ title }}
+        </h3>
+      {% endif %}
+
+      {% if url %}
+        <a
+          href="{{ url }}"
+          class="read-more btn-link-color link-text-decoration-style mt-auto"
+        >
+          <span class="read-more-text">
+            {{ 'Read more'|t }}
+          </span>
+          <span class="read-more-icon"></span>
+        </a>
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</article>

@@ -11,3 +11,10 @@ global-styling:
   dependencies:
     - core/jquery
     - core/drupal
+
+news-slider:
+  js:
+    components/news-slider/news-slider.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

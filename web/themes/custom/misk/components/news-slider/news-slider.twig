@@ -1,0 +1,39 @@
+<div{{ attributes.addClass('news-slider') }}>
+
+  <div class="news-carousel">
+    {% for item in items %}
+      {% include "misk:news-card" with {
+        image: item.image,
+        date: item.date,
+        title: item.title,
+        url: item.url
+      } only %}
+    {% endfor %}
+  </div>
+
+  <div class="slider-arrows">
+
+    <button
+      type="button"
+      class="slider-arrow slider-arrow--prev"
+      aria-label="{{ 'Previous news'|t }}"
+    ></button>
+
+    <button
+      type="button"
+      class="slider-arrow slider-arrow--next"
+      aria-label="{{ 'Next news'|t }}"
+    ></button>
+
+  </div>
+
+  <div class="text-center">
+    <a
+      href="{{ view_all_url }}"
+      class="btn btn-primary rounded-pill fw-semibold"
+    >
+      {{ 'See All News'|t }}
+    </a>
+  </div>
+
+</div>
