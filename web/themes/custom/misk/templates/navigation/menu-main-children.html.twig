@@ -1,0 +1,64 @@
+{#
+/**
+ * @file
+ * Recursive menu children.
+ */
+#}
+
+{% for item in items %}
+
+  {% set has_children = item.below is not empty %}
+  {% set item_id = parent_id ~ '-' ~ loop.index %}
+
+
+  {% if has_children %}
+
+    {# ==============================================================
+       CHILD ITEM WITH CHILDREN
+       ============================================================== #}
+
+    <div>
+
+      <button
+        class="dropdown-item text-white w-100 display-6 fw-semibold menu-btn"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#{{ item_id }}"
+        aria-expanded="false"
+        aria-controls="{{ item_id }}"
+      >
+        {{ item.title }}
+      </button>
+
+
+      <div
+        class="collapse ps-3"
+        id="{{ item_id }}"
+      >
+
+        {% include '@misk/templates/navigation/menu-main-children.html.twig' with {
+          items: item.below,
+          parent_id: item_id,
+          depth: depth + 1
+        } only %}
+
+      </div>
+
+    </div>
+
+  {% else %}
+
+    {# ==============================================================
+       CHILD ITEM WITHOUT CHILDREN
+       ============================================================== #}
+
+    <a
+      class="dropdown-item text-white display-6 fw-semibold"
+      href="{{ item.url }}"
+    >
+      {{ item.title }}
+    </a>
+
+  {% endif %}
+
+{% endfor %}

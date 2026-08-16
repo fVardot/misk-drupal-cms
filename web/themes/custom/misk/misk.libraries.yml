@@ -8,6 +8,8 @@ global-styling:
   css:
     component:
       css/style.css: {}
+      css/footer.css: {}
+      css/fontawesome/all.min.css: {}
   dependencies:
     - core/jquery
     - core/drupal

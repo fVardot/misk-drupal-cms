@@ -8,7 +8,6 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 
-
 /**
  * Implements hook_preprocess_views_view__HOOK() for the hero_slider view.
  *
@@ -18,11 +17,14 @@ use Drupal\node\NodeInterface;
  */
 function misk_preprocess_views_view__hero_slider__block_1(array &$variables) {
   $items = [];
+
   foreach ($variables['view']->result as $row) {
     $node = $row->_entity;
+
     if (!$node instanceof NodeInterface) {
       continue;
     }
+
     $items[] = [
       'image' => _misk_hero_slider_image_url($node),
       'title' => $node->label(),
@@ -45,22 +47,27 @@ function _misk_hero_slider_image_url(NodeInterface $node): ?string {
   if (!$node->hasField('field_image') || $node->get('field_image')->isEmpty()) {
     return NULL;
   }
+
   $media = $node->get('field_image')->entity;
-  if (!$media || !$media->hasField('field_media_image') || $media->get('field_media_image')->isEmpty()) {
+
+  if (
+    !$media ||
+    !$media->hasField('field_media_image') ||
+    $media->get('field_media_image')->isEmpty()
+  ) {
     return NULL;
   }
+
   $file = $media->get('field_media_image')->entity;
+
   if (!$file) {
     return NULL;
   }
-  return \Drupal::service('file_url_generator')->generateString($file->getFileUri());
+
+  return \Drupal::service('file_url_generator')
+    ->generateString($file->getFileUri());
 }
 
-/**
- * Implements hook_preprocess_views_view__HOOK() for the news view.
- *
- * Renders the News view's results through the misk:news-slider component.
- */
 /**
  * Renders the News View through the news-slider component.
  */
@@ -132,27 +139,135 @@ function _misk_news_image_url(NodeInterface $node): ?string {
     ->generateString($file->getFileUri());
 }
 
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Loads the three footer menus and makes their items available
+ * to page.html.twig.
+ *
+ * Footer menus:
+ * - footer-left
+ * - social-links
+ * - footer
+ */
+/**
+ * Implements hook_preprocess_page().
+ */
+function misk_preprocess_page(array &$variables) {
+  $menu_tree = \Drupal::menuTree();
+
+  // ------------------------------------------------------------
+  // FOOTER LEFT
+  // ------------------------------------------------------------
+  $footer_left_tree = _misk_load_menu($menu_tree, 'footer-left');
+
+  $footer_left_items = [];
+
+  foreach ($footer_left_tree as $item) {
+    if (!$item->access->isAllowed()) {
+      continue;
+    }
+
+    $footer_left_items[] = [
+      'title' => $item->link->getTitle(),
+      'url' => $item->link->getUrlObject()->toString(),
+    ];
+  }
+
+  // Split Footer Left into two columns like the old website.
+  $variables['footer_left_columns'] = array_chunk(
+    $footer_left_items,
+    (int) ceil(count($footer_left_items) / 2)
+  );
+
+  // ------------------------------------------------------------
+  // SOCIAL LINKS
+  // ------------------------------------------------------------
+  $social_links_tree = _misk_load_menu($menu_tree, 'social-links');
+
+$variables['social_links_items'] = [];
+
+foreach ($social_links_tree as $item) {
+  if (!$item->access->isAllowed()) {
+    continue;
+  }
+
+  $link = $item->link;
+  $options = $link->getOptions();
+
+  $variables['social_links_items'][] = [
+    'title' => $link->getTitle(),
+    'url' => $link->getUrlObject()->toString(),
+    'attributes' => new \Drupal\Core\Template\Attribute(
+      $options['attributes'] ?? []
+    ),
+  ];
+}
+
+
+  // ------------------------------------------------------------
+  // POLICIES
+  // ------------------------------------------------------------
+  $policies_tree = _misk_load_menu($menu_tree, 'footer');
+
+  $variables['policies_items'] = [];
+
+  foreach ($policies_tree as $item) {
+    if (!$item->access->isAllowed()) {
+      continue;
+    }
+
+    $link = $item->link;
+
+    $variables['policies_items'][] = [
+      'title' => $link->getTitle(),
+      'url' => $link->getUrlObject()->toString(),
+    ];
+  }
+}
+
+/**
+ * Loads and transforms a Drupal menu tree.
+ */
+function _misk_load_menu($menu_tree, string $menu_name) {
+  $parameters = new \Drupal\Core\Menu\MenuTreeParameters();
+
+  $tree = $menu_tree->load($menu_name, $parameters);
+
+  return $menu_tree->transform($tree, [
+    [
+      'callable' => 'menu.default_tree_manipulators:checkAccess',
+    ],
+    [
+      'callable' => 'menu.default_tree_manipulators:generateIndexAndSort',
+    ],
+  ]);
+}
 
 /**
  * Implements hook_form_system_theme_settings_alter() for settings form.
  *
  * Replace Bootstrap setting options with subtheme ones.
  */
-function misk_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
-  $form['components']['navbar']['bootstrap_navbar_top_background']['#options'] = array(
+function misk_form_system_theme_settings_alter(
+  &$form,
+  FormStateInterface $form_state
+) {
+  $form['components']['navbar']['bootstrap_navbar_top_background']['#options'] = [
     'bg-primary' => t('Primary'),
     'bg-secondary' => t('Secondary'),
     'bg-light' => t('Light'),
     'bg-dark' => t('Dark'),
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
-  );
-  $form['components']['navbar']['bootstrap_navbar_background']['#options'] = array(
+  ];
+
+  $form['components']['navbar']['bootstrap_navbar_background']['#options'] = [
     'bg-primary' => t('Primary'),
     'bg-secondary' => t('Secondary'),
     'bg-light' => t('Light'),
     'bg-dark' => t('Dark'),
     'bg-white' => t('White'),
     'bg-transparent' => t('Transparent'),
-  );
+  ];
 }

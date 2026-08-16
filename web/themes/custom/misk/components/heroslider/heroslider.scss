@@ -2,11 +2,9 @@
   // Break out of the page's centered Bootstrap .container ancestor
   // (see web/themes/contrib/bootstrap/templates/layout/page.html.twig)
   // so the hero spans the full browser width edge-to-edge.
-  position: relative;
-    width: 100vw;
-    max-width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
+   position: relative;
+  width: 100%;
+  max-width: 100%;
 
   .carousel-indicators {
     .carousel-dot {

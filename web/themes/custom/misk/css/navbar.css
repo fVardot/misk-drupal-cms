@@ -1,0 +1,340 @@
+/* VARIABLES */
+.header-logo {
+  width: 9.375rem;
+  z-index: 1060;
+}
+
+.navbar-toggler {
+  position: relative;
+  z-index: 1060;
+}
+
+/* ==========================================================
+   MENU ICON
+   ========================================================== */
+.navbar-toggler-icon {
+  background-image: none;
+  background-color: #00372a;
+  -webkit-mask-image: url("/pictures/State=Menu.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("/pictures/State=Menu.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+/* ==========================================================
+   SUBTRACT / MENU SHAPE
+   ========================================================== */
+.subtract-pic {
+  background-image: url("/pictures/Subtract.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 10.25rem;
+  position: relative;
+  z-index: 1060;
+}
+.subtract-pic--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #00372a;
+  -webkit-mask-image: url("/pictures/Subtract.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("/pictures/Subtract.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transition: background-color 0.3s;
+}
+.subtract-pic--primary:hover::before {
+  background-color: #c2d500;
+}
+.subtract-pic--primary .navbar-toggler-icon {
+  background-color: #c2d500;
+  -webkit-mask-image: url("/pictures/State=Menu.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("/pictures/State=Menu.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transition: background-color 0.3s;
+}
+.subtract-pic--primary:hover .navbar-toggler-icon {
+  background-color: #00372a;
+}
+
+/* ==========================================================
+   MENU ARROW
+   ========================================================== */
+.menu-btn::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  width: 15px;
+  height: 15px;
+  background-image: url("/pictures/VectorDown.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.menu-btn[aria-expanded=true]::after {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================
+   ACCORDION MENU
+   ========================================================== */
+.accordion-menu > li > button {
+  transition: opacity 0.5s;
+}
+.accordion-menu:has(> li > button[aria-expanded=true]) > li > button:not([aria-expanded=true]) {
+  transition: opacity 0.5s;
+  opacity: 0.4;
+}
+
+/* ==========================================================
+   DROPDOWN OPEN/CLOSE ANIMATION
+   ========================================================== */
+.dropdown-menu.show {
+  transform-origin: top;
+  animation: slideDown 0.3s ease forwards;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu.hiding {
+  transform-origin: top;
+  animation: slideUp 0.3s ease forwards;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-50%) scaleY(0);
+    opacity: 0;
+  }
+}
+/* ==========================================================
+   MAIN DROPDOWN
+   ========================================================== */
+.dropdown-menu {
+  position: fixed !important;
+  top: 0 !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%);
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  height: 70vh;
+  overflow: hidden;
+  z-index: 1040;
+  /* ----------------------------------------------------------
+     SCROLL AREA
+     ---------------------------------------------------------- */
+}
+.dropdown-menu .dropdown-scroll {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.dropdown-menu .dropdown-scroll::-webkit-scrollbar {
+  display: none;
+}
+.dropdown-menu {
+  /* ----------------------------------------------------------
+     LI
+     ---------------------------------------------------------- */
+}
+.dropdown-menu li {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+.dropdown-menu li:hover, .dropdown-menu li:focus, .dropdown-menu li:active {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+.dropdown-menu li {
+  /* --------------------------------------------------------
+     COLLAPSING CHILDREN
+     -------------------------------------------------------- */
+}
+.dropdown-menu li .collapsing {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.25rem 0;
+}
+.dropdown-menu li .collapse.show {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 1.25rem 0;
+}
+.dropdown-menu li {
+  /* --------------------------------------------------------
+     BUTTONS
+     -------------------------------------------------------- */
+}
+.dropdown-menu li button.dropdown-item {
+  position: relative;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fff !important;
+}
+.dropdown-menu li button.dropdown-item:hover, .dropdown-menu li button.dropdown-item:focus, .dropdown-menu li button.dropdown-item:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fff !important;
+}
+.dropdown-menu li button.dropdown-item[aria-expanded=true] {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fff !important;
+}
+.dropdown-menu li button.dropdown-item[aria-expanded=true]::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  right: 1rem;
+  border-bottom: 1px solid #d9e378;
+}
+.dropdown-menu li {
+  /* --------------------------------------------------------
+     LINKS
+     -------------------------------------------------------- */
+}
+.dropdown-menu li a.dropdown-item {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fff !important;
+}
+.dropdown-menu li a.dropdown-item:hover, .dropdown-menu li a.dropdown-item:focus, .dropdown-menu li a.dropdown-item:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fff !important;
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+
+/* ==========================================================
+   FORCE LI TO NEVER HAVE A WHITE BACKGROUND
+   ========================================================== */
+.dropdown-menu > li,
+.dropdown-menu > li:hover,
+.dropdown-menu > li:focus,
+.dropdown-menu > li:active,
+.dropdown-menu li,
+.dropdown-menu li:hover,
+.dropdown-menu li:focus,
+.dropdown-menu li:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* ==========================================================
+   LOGO SPACE
+   ========================================================== */
+.menu-top-space {
+  height: 5.5rem;
+  flex-shrink: 0;
+}
+
+/* ==========================================================
+   CLOSE BUTTON
+   ========================================================== */
+.close-btn {
+  background-image: url("/pictures/exitButton.svg");
+  filter: invert(85%) sepia(50%) saturate(400%) hue-rotate(32deg) brightness(105%);
+  position: relative;
+  width: 49px;
+  height: 49px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 1060;
+}
+.close-btn:hover {
+  filter: brightness(0) invert(1);
+}
+
+/* ==========================================================
+   CLOSE BUTTON WRAPPER
+   ========================================================== */
+.menu-close-wrapper {
+  position: relative;
+  z-index: 1060;
+}
+
+/* ==========================================================
+   SEARCH
+   ========================================================== */
+.search-box .search-input {
+  height: 1.69rem;
+}
+.search-box .search-icon {
+  right: 0.75rem;
+}
+
+/* ==========================================================
+   BOOTSTRAP OVERRIDES
+   ========================================================== */
+.dropdown-menu .dropdown-item {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:active {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #fff !important;
+}
+
+/* ==========================================================
+   HEADER / LOGO Z-INDEX
+   ========================================================== */
+.main-header {
+  z-index: 1050;
+}
+
+.main-header .header-logo {
+  position: relative;
+  z-index: 1060;
+}
+
+.main-header .navbar-toggler {
+  position: relative;
+  z-index: 1060;
+}
