@@ -1,0 +1,220 @@
+/* VARIABLES */
+header {
+  background-color: transparent !important;
+}
+header .navbar {
+  background-color: transparent !important;
+}
+header .container-fluid {
+  background-color: transparent !important;
+}
+
+.header-logo {
+  width: 9.375rem;
+  z-index: 1050;
+}
+.header-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.navbar-toggler {
+  background: transparent;
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  width: 2rem;
+  height: 2rem;
+  background-image: none;
+  background-color: #00372a;
+  -webkit-mask-image: url("/themes/custom/misk/pictures/State=Menu.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("/themes/custom/misk/pictures/State=Menu.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.subtract-pic {
+  position: relative;
+  width: 10.25rem;
+  height: 4.5rem;
+  background-image: url("/themes/custom/misk/pictures/Subtract.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.subtract-pic .navbar-toggler-icon {
+  background-color: #00372a;
+  transition: background-color 0.3s;
+}
+.subtract-pic--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #00372a;
+  -webkit-mask-image: url("/themes/custom/misk/pictures/Subtract.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("/themes/custom/misk/pictures/Subtract.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transition: background-color 0.3s;
+}
+.subtract-pic--primary:hover::before {
+  background-color: #c2d500;
+}
+.subtract-pic--primary .navbar-toggler-icon {
+  background-color: #c2d500;
+  -webkit-mask-image: url("/themes/custom/misk/pictures/State=Menu.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("/themes/custom/misk/pictures/State=Menu.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+.subtract-pic--primary:hover .navbar-toggler-icon {
+  background-color: #00372a;
+}
+
+.dropdown-menu {
+  width: 100%;
+  height: 70vh;
+  margin-top: 0;
+  overflow: hidden;
+  transform-origin: top;
+  border: 0;
+  border-radius: 0;
+}
+.dropdown-menu.show {
+  display: flex;
+  flex-direction: column;
+  transform-origin: top;
+  animation: slideDown 0.3s ease forwards;
+}
+.dropdown-menu.hiding {
+  display: flex !important;
+  flex-direction: column;
+  transform-origin: top;
+  animation: slideUp 0.3s ease forwards;
+  pointer-events: none;
+}
+
+.navbar-nav {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-direction: column;
+}
+.navbar-nav .nav-item {
+  width: 100%;
+}
+.navbar-nav .nav-link {
+  width: 100%;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: white;
+}
+.navbar-nav .nav-link.active {
+  color: white;
+}
+
+.dropdown-item {
+  color: white !important;
+  font-weight: 600;
+}
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active {
+  color: white !important;
+  background-color: transparent;
+}
+.dropdown-item.active {
+  color: white !important;
+  background-color: transparent;
+}
+
+.menu-item--expanded {
+  position: relative;
+}
+.menu-item--expanded > .dropdown-toggle {
+  position: relative;
+}
+.menu-item--expanded > .dropdown-toggle::after {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  border: 0;
+  background-image: url("/themes/custom/misk/pictures/VectorDown.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+.menu-item--expanded > .dropdown-toggle[aria-expanded=true]::after {
+  transform: rotate(180deg);
+}
+
+.navbar-nav .dropdown > .dropdown-menu {
+  position: static !important;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.navbar-nav .active > .nav-link,
+.navbar-nav .active > .dropdown-item {
+  color: white;
+}
+
+.close-btn {
+  position: relative;
+  width: 49px;
+  height: 49px;
+  background-image: url("/themes/custom/misk/pictures/exitButton.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: invert(85%) sepia(50%) saturate(400%) hue-rotate(32deg) brightness(105%);
+}
+.close-btn:hover {
+  filter: brightness(0) invert(1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  to {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}

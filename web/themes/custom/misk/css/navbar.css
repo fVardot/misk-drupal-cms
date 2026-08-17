@@ -15,11 +15,11 @@
 .navbar-toggler-icon {
   background-image: none;
   background-color: #00372a;
-  -webkit-mask-image: url("/pictures/State=Menu.svg");
+  -webkit-mask-image: url("../pictures/State=Menu.svg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
-  mask-image: url("/pictures/State=Menu.svg");
+  mask-image: url("../pictures/State=Menu.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
@@ -29,7 +29,7 @@
    SUBTRACT / MENU SHAPE
    ========================================================== */
 .subtract-pic {
-  background-image: url("/pictures/Subtract.svg");
+  background-image: url("../pictures/Subtract.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -42,11 +42,11 @@
   position: absolute;
   inset: 0;
   background-color: #00372a;
-  -webkit-mask-image: url("/pictures/Subtract.svg");
+  -webkit-mask-image: url("../pictures/Subtract.svg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
-  mask-image: url("/pictures/Subtract.svg");
+  mask-image: url("../pictures/Subtract.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
@@ -57,11 +57,11 @@
 }
 .subtract-pic--primary .navbar-toggler-icon {
   background-color: #c2d500;
-  -webkit-mask-image: url("/pictures/State=Menu.svg");
+  -webkit-mask-image: url("../pictures/State=Menu.svg");
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
   -webkit-mask-size: contain;
-  mask-image: url("/pictures/State=Menu.svg");
+  mask-image: url("../pictures/State=Menu.svg");
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
@@ -81,7 +81,7 @@
   margin-left: 0.5rem;
   width: 15px;
   height: 15px;
-  background-image: url("/pictures/VectorDown.svg");
+  background-image: url("../pictures/VectorDown.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

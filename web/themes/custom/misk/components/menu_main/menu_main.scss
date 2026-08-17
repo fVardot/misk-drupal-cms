@@ -1,0 +1,345 @@
+@use "../../scss/variables" as *;
+@use "../../scss/mixins.scss" as *;
+// ============================================================
+// Header
+// ============================================================
+
+header {
+  background-color: transparent !important;
+
+  .navbar {
+    background-color: transparent !important;
+  }
+
+  .container-fluid {
+    background-color: transparent !important;
+  }
+}
+
+
+// ============================================================
+// Logo
+// ============================================================
+
+.header-logo {
+  width: 9.375rem;
+  z-index: 1050;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+// ============================================================
+// Navbar toggler
+// ============================================================
+
+.navbar-toggler {
+  background: transparent;
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  width: 2rem;
+  height: 2rem;
+
+  background-image: none;
+  background-color: $primary;
+
+  @include mask-icon("/themes/custom/misk/pictures/State=Menu.svg");
+}
+
+
+// ============================================================
+// Subtract / hamburger background
+// ============================================================
+
+.subtract-pic {
+  position: relative;
+  width: 10.25rem;
+  height: 4.5rem;
+
+  @include bg-icon("/themes/custom/misk/pictures/Subtract.svg");
+
+  .navbar-toggler-icon {
+    background-color: $primary;
+    transition: background-color 0.3s;
+  }
+
+  // Primary variant from your old header.
+  &--primary {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background-color: $primary;
+
+      @include mask-icon("/themes/custom/misk/pictures/Subtract.svg");
+
+      transition: background-color 0.3s;
+    }
+
+    &:hover::before {
+      background-color: $primary-hover;
+    }
+
+    .navbar-toggler-icon {
+      background-color: $primary-hover;
+
+      @include mask-icon("/themes/custom/misk/pictures/State=Menu.svg");
+    }
+
+    &:hover .navbar-toggler-icon {
+      background-color: $primary;
+    }
+  }
+}
+
+
+// ============================================================
+// Main dropdown menu
+// ============================================================
+
+.dropdown-menu {
+  width: 100%;
+  height: 70vh;
+
+  margin-top: 0;
+
+  overflow: hidden;
+
+  transform-origin: top;
+
+  // Bootstrap dropdown should not show its default styling.
+  border: 0;
+  border-radius: 0;
+
+  // Menu itself is flex when opened.
+  &.show {
+    display: flex;
+    flex-direction: column;
+
+    transform-origin: top;
+
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  // Animation state if you use it later with JS.
+  &.hiding {
+  display: flex !important;
+  flex-direction: column;
+
+  transform-origin: top;
+
+  animation: slideUp 0.3s ease forwards;
+
+  pointer-events: none;
+}
+
+}
+
+
+// ============================================================
+// Main Drupal menu
+// Current Twig:
+// <ul class="nav navbar-nav">
+// ============================================================
+
+.navbar-nav {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  // Remove Bootstrap navbar styling.
+  flex-direction: column;
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+
+    color: white;
+
+    font-size: 1.25rem;
+
+    font-weight: 600;
+
+    &:hover,
+    &:focus {
+      color: white;
+      text-decoration: underline;
+      text-decoration-color: white;
+    }
+
+    &.active {
+      color: white;
+    }
+  }
+}
+
+
+// ============================================================
+// Dropdown items
+// Current Twig uses:
+// .dropdown-item
+// .dropdown-toggle
+// ============================================================
+
+.dropdown-item {
+  color: white !important;
+  font-weight: 600;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: white !important;
+    background-color: transparent;
+  }
+
+  &.active {
+    color: white !important;
+    background-color: transparent;
+  }
+}
+
+
+
+// ============================================================
+// Expanded menu items
+// Current Twig:
+// .menu-item--expanded
+// .dropdown
+// .dropdown-toggle
+// ============================================================
+
+.menu-item--expanded {
+  position: relative;
+
+  > .dropdown-toggle {
+    position: relative;
+
+    &::after {
+      display: inline-block;
+
+      width: 15px;
+      height: 15px;
+
+      margin-left: 0.5rem;
+
+      vertical-align: middle;
+
+      border: 0;
+
+      @include bg-icon("/themes/custom/misk/pictures/VectorDown.svg");
+
+      transition: transform 0.3s ease;
+    }
+
+    &[aria-expanded="true"]::after {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+
+// ============================================================
+// Nested dropdown menus
+// ============================================================
+
+.navbar-nav {
+  .dropdown {
+    > .dropdown-menu {
+      position: static !important;
+
+      width: 100%;
+
+      height: auto;
+
+      margin: 0;
+      padding: 0;
+
+      background-color: transparent;
+
+      box-shadow: none;
+    }
+  }
+}
+
+
+// ============================================================
+// Active trail
+// ============================================================
+
+.navbar-nav {
+  .active {
+    > .nav-link,
+    > .dropdown-item {
+      color: white;
+    }
+  }
+}
+
+
+// ============================================================
+// Close button
+// ============================================================
+
+.close-btn {
+  position: relative;
+
+  width: 49px;
+  height: 49px;
+
+  background-image: url("/themes/custom/misk/pictures/exitButton.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  filter:
+    invert(85%)
+    sepia(50%)
+    saturate(400%)
+    hue-rotate(32deg)
+    brightness(105%);
+
+  &:hover {
+    filter: brightness(0) invert(1);
+  }
+}
+
+
+// ============================================================
+// Menu animation
+// ============================================================
+
+@keyframes slideDown {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}

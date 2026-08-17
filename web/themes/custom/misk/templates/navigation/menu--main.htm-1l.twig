@@ -1,0 +1,232 @@
+{#
+/**
+ * @file
+ * Main navigation.
+ */
+#}
+
+{% set logo_src = directory ~ '/pictures/logo.svg' %}
+
+<header class="main-header position-absolute top-0 start-0 z-3 w-100">
+
+  <nav class="navbar top-0 start-0 w-100 p-0">
+
+    <div class="container-fluid px-0">
+
+      <div class="dropdown w-100">
+
+
+        {# ==========================================================
+           MENU TOGGLE / LOGO
+           ========================================================== #}
+
+        <button
+          type="button"
+          class="p-0 d-flex justify-content-between gap-12 border-0 navbar-toggler shadow-none w-100"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="false"
+          aria-expanded="false"
+        >
+
+          {# Logo must remain above the opened menu #}
+          <div
+            class="header-logo pt-4 ms-4 me-auto position-relative"
+            role="img"
+            aria-label="Logo"
+          >
+            <img
+              class="img-fluid"
+              src="{{ logo_src }}"
+              alt="Logo"
+            >
+          </div>
+
+          {# Menu shape #}
+          <div
+            class="subtract-pic position-relative"
+            role="img"
+            aria-label="Menu"
+          >
+            <span class="navbar-toggler-icon position-absolute top-50 start-50 translate-middle"></span>
+          </div>
+
+        </button>
+
+
+        {# ==========================================================
+           MENU BACKGROUND
+           ========================================================== #}
+
+        <div
+          class="dropdown-menu position-absolute mt-0 bg-primary w-100 top-0 start-0 p-0"
+        >
+
+          {# Keep this empty top area for the logo #}
+          <div class="menu-top-space"></div>
+
+
+          {# ========================================================
+             CLOSE BUTTON
+             ======================================================== #}
+
+          <div class="menu-close-wrapper d-flex justify-content-end pt-0">
+
+            <div
+              class="close-btn p-0"
+              role="button"
+              tabindex="0"
+              aria-label="Close menu"
+            ></div>
+
+          </div>
+
+
+          {# ========================================================
+             MENU ITEMS
+             ======================================================== #}
+
+          <ul
+            id="accordionMenu"
+            class="accordion-menu list-unstyled dropdown-scroll"
+          >
+
+            {% for item in items %}
+
+              {% set is_first = loop.first %}
+              {% set has_children = item.below is not empty %}
+              {% set item_id = 'item-' ~ loop.index %}
+
+              <li
+                class="{% if is_first %}mt-5 pt-3 mb-9{% else %}my-9{% endif %}"
+              >
+
+                {% if has_children %}
+
+                  <button
+                    class="dropdown-item text-white w-100 display-4 fw-semibold{% if not is_first %} menu-btn{% endif %}"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#{{ item_id }}"
+                    aria-expanded="false"
+                    aria-controls="{{ item_id }}"
+                  >
+                    {{ item.title }}
+                  </button>
+
+                  <div
+                    class="collapse"
+                    id="{{ item_id }}"
+                    data-bs-parent="#accordionMenu"
+                  >
+
+                    {% for child in item.below %}
+
+                      {% set child_has_children = child.below is not empty %}
+                      {% set child_id = item_id ~ '-' ~ loop.index %}
+
+                      {% if child_has_children %}
+
+                        <div>
+
+                          <button
+                            class="dropdown-item text-white w-100 display-6 fw-semibold menu-btn"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#{{ child_id }}"
+                            aria-expanded="false"
+                            aria-controls="{{ child_id }}"
+                          >
+                            {{ child.title }}
+                          </button>
+
+                          <div
+                            class="collapse ps-3"
+                            id="{{ child_id }}"
+                          >
+
+                            {% for grandchild in child.below %}
+
+                              <a
+                                class="dropdown-item text-white display-6 fw-semibold"
+                                href="{{ grandchild.url }}"
+                              >
+                                {{ grandchild.title }}
+                              </a>
+
+                            {% endfor %}
+
+                          </div>
+
+                        </div>
+
+                      {% else %}
+
+                        <a
+                          class="dropdown-item text-white display-6 fw-semibold"
+                          href="{{ child.url }}"
+                        >
+                          {{ child.title }}
+                        </a>
+
+                      {% endif %}
+
+                    {% endfor %}
+
+                  </div>
+
+                {% else %}
+
+                  <a
+                    class="dropdown-item text-white display-4 fw-semibold"
+                    href="{{ item.url }}"
+                  >
+                    {{ item.title }}
+                  </a>
+
+                {% endif %}
+
+              </li>
+
+            {% endfor %}
+
+          </ul>
+
+
+          {# ========================================================
+             SEARCH
+             ======================================================== #}
+
+          <div class="mt-auto">
+
+            <hr class="border border-1 border-secondary opacity-100 mx-3">
+
+            <div class="search-wrapper mx-3">
+
+              <div class="search-box mb-3 position-relative">
+
+                <input
+                  type="text"
+                  class="search-input form-control rounded-0 px-9 py-7"
+                  placeholder="Search"
+                  aria-label="Search"
+                >
+
+                <i
+                  class="bi bi-search search-icon position-absolute top-50 translate-middle-y text-black pe-none"
+                ></i>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+</header>

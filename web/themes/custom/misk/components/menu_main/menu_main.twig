@@ -1,0 +1,135 @@
+<header class="position-absolute top-0 start-0 z-3 w-100 pt-0">
+
+  <nav class="navbar top-0 start-0 w-100 p-0">
+
+    <div class="container-fluid px-0 d-flex justify-content-end">
+
+      <div class="dropdown flex-grow-1 flex-sm-grow-0 pt-0">
+
+        {# Logo + hamburger button #}
+        <button
+          type="button"
+          class="p-0 d-flex align-items-center gap-12 border-0 navbar-toggler shadow-none"
+          data-bs-toggle="dropdown"
+          data-bs-auto-close="false"
+          aria-expanded="false"
+          aria-label="Open menu">
+
+          {# Logo #}
+          <div class="header-logo pt-4 position-relative" role="img" aria-label="Logo">
+            <img
+              class="img-fluid"
+              src="{{ directory }}/logo.svg"
+              alt="{{ site_name }}">
+          </div>
+
+          {# Hamburger #}
+          <div class="subtract-pic position-relative pt-0" role="img" aria-label="Menu">
+            <span class="navbar-toggler-icon position-absolute top-50 start-50 translate-middle"></span>
+          </div>
+
+        </button>
+
+
+        {# Dropdown menu #}
+        <div class="dropdown-menu position-absolute mt-0 bg-primary w-100 top-0 start-0 p-0">
+
+          {# Close button #}
+          <div class="d-flex justify-content-end pt-0">
+            <button
+              type="button"
+              class="close-btn p-0 border-0 bg-transparent"
+              aria-label="Close menu">
+          </button>
+          </div>
+
+
+          {# Drupal main menu #}
+          {% import _self as menus %}
+
+          {{ menus.menu_links(items, attributes, 0) }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </nav>
+</header>
+
+
+{#
+  Render the menu tree recursively.
+#}
+{% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+
+  {% if items %}
+
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass('nav navbar-nav')|without('id') }}>
+    {% else %}
+      <ul class="dropdown-menu">
+    {% endif %}
+
+      {% for item in items %}
+
+        {%
+          set classes = [
+            menu_level ? 'dropdown-item' : 'nav-item',
+            item.is_expanded ? 'menu-item--expanded',
+            item.is_collapsed ? 'menu-item--collapsed',
+            item.in_active_trail ? 'active',
+            item.below ? 'dropdown',
+          ]
+        %}
+
+        <li{{ item.attributes.addClass(classes) }}>
+
+          {%
+            set link_classes = [
+              not menu_level ? 'nav-link',
+              item.in_active_trail ? 'active',
+              item.below ? 'dropdown-toggle',
+              item.url.getOption('attributes').class
+                ? item.url.getOption('attributes').class | join(' '),
+              'nav-link-' ~ item.url.toString() | clean_class,
+            ]
+          %}
+
+          {% if item.below %}
+
+            {{ link(
+              item.title,
+              item.url,
+              {
+                'class': link_classes,
+                'data-bs-toggle': 'dropdown',
+                'aria-expanded': 'false',
+                'aria-haspopup': 'true'
+              }
+            ) }}
+
+            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+
+          {% else %}
+
+            {{ link(
+              item.title,
+              item.url,
+              {
+                'class': link_classes
+              }
+            ) }}
+
+          {% endif %}
+
+        </li>
+
+      {% endfor %}
+
+    </ul>
+
+  {% endif %}
+{% endmacro %}
