@@ -6,48 +6,131 @@
 
       <div class="dropdown flex-grow-1 flex-sm-grow-0 pt-0">
 
-        {# Logo + hamburger button #}
+        {# ============================================================
+           Logo + hamburger button
+           ============================================================ #}
+
         <button
           type="button"
-          class="p-0 d-flex align-items-center gap-12 border-0 navbar-toggler shadow-none"
+          class="p-0 px-4 d-flex align-items-center gap-12 border-0 navbar-toggler shadow-none"
           data-bs-toggle="dropdown"
           data-bs-auto-close="false"
           aria-expanded="false"
           aria-label="Open menu">
 
           {# Logo #}
-          <div class="header-logo pt-4 position-relative" role="img" aria-label="Logo">
+          <div
+            class="header-logo pt-4 position-relative"
+            role="img"
+            aria-label="Logo">
+
             <img
               class="img-fluid"
               src="{{ directory }}/logo.svg"
               alt="{{ site_name }}">
+
           </div>
 
           {# Hamburger #}
-          <div class="subtract-pic position-relative pt-0" role="img" aria-label="Menu">
-            <span class="navbar-toggler-icon position-absolute top-50 start-50 translate-middle"></span>
+          <div
+            class="subtract-pic position-relative pt-0"
+            role="img"
+            aria-label="Menu">
+
+            <span
+              class="navbar-toggler-icon position-absolute top-50 start-50 translate-middle">
+            </span>
+
           </div>
 
         </button>
 
 
-        {# Dropdown menu #}
-        <div class="dropdown-menu position-absolute mt-0 bg-primary w-100 top-0 start-0 p-0">
+        {# ============================================================
+           Dropdown menu
+           ============================================================ #}
 
-          {# Close button #}
+        <div
+          class="dropdown-menu position-absolute mt-0 bg-primary w-100 top-0 start-0 p-0 px-4">
+
+          {# ==========================================================
+             Close button
+             ========================================================== #}
+
           <div class="d-flex justify-content-end pt-0">
+
             <button
               type="button"
               class="close-btn p-0 border-0 bg-transparent"
               aria-label="Close menu">
-          </button>
+            </button>
+
           </div>
 
 
-          {# Drupal main menu #}
+          {# ==========================================================
+             Drupal main menu
+             ========================================================== #}
+
           {% import _self as menus %}
 
           {{ menus.menu_links(items, attributes, 0) }}
+
+
+          {# ==========================================================
+             Search
+             ========================================================== #}
+
+          <div class="menu-search">
+
+            <hr class="menu-search-divider">
+
+            <form
+              class="search-wrapper"
+              action="/search/node"
+              method="get"
+              role="search">
+
+              <div class="search-box">
+
+                <input
+                  type="search"
+                  name="keys"
+                  class="search-input form-control"
+                  placeholder="Search"
+                  aria-label="Search">
+
+                <span
+                  class="search-icon position-absolute top-50 translate-middle-y">
+
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+
+                    <path
+                      d="M8.75 15.625C12.547 15.625 15.625 12.547 15.625 8.75C15.625 4.95304 12.547 1.875 8.75 1.875C4.95304 1.875 1.875 4.95304 1.875 8.75C1.875 12.547 4.95304 15.625 8.75 15.625Z"
+                      stroke="currentColor"
+                      stroke-width="1.5"/>
+
+                    <path
+                      d="M13.75 13.75L18.125 18.125"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"/>
+
+                  </svg>
+
+                </span>
+
+              </div>
+
+            </form>
+
+          </div>
 
         </div>
 
@@ -56,22 +139,32 @@
     </div>
 
   </nav>
+
 </header>
 
 
 {#
+  ================================================================
   Render the menu tree recursively.
+  ================================================================
 #}
+
 {% macro menu_links(items, attributes, menu_level) %}
+
   {% import _self as menus %}
 
   {% if items %}
 
     {% if menu_level == 0 %}
+
       <ul{{ attributes.addClass('nav navbar-nav')|without('id') }}>
+
     {% else %}
+
       <ul class="dropdown-menu">
+
     {% endif %}
+
 
       {% for item in items %}
 
@@ -84,6 +177,7 @@
             item.below ? 'dropdown',
           ]
         %}
+
 
         <li{{ item.attributes.addClass(classes) }}>
 
@@ -98,6 +192,7 @@
             ]
           %}
 
+
           {% if item.below %}
 
             {{ link(
@@ -111,7 +206,11 @@
               }
             ) }}
 
-            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+            {{ menus.menu_links(
+              item.below,
+              attributes,
+              menu_level + 1
+            ) }}
 
           {% else %}
 
@@ -132,4 +231,5 @@
     </ul>
 
   {% endif %}
+
 {% endmacro %}

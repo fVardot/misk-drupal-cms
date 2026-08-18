@@ -4,23 +4,37 @@
   .slide-item {
     height: calc(10rem + 20vw);
 
-    img {
-      transform: scale(1);
-      transition: transform 0.4s ease-in-out;
+    .news-card-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        transform: scale(1);
+        transition: transform 0.4s ease-in-out;
+      }
     }
 
     &::after {
       content: "";
       position: absolute;
       inset: 0;
+
       background-color: rgba($primary, 0);
       transition: background-color 0.4s ease-in-out;
+
       pointer-events: none;
       z-index: 1;
       border-radius: 16px;
     }
 
-    > *:not(img) {
+    > .date {
       position: relative;
       left: 20px;
       z-index: 2;
@@ -29,8 +43,10 @@
 
   &:hover {
     .slide-item {
-      img {
-        transform: scale(1.08);
+      .news-card-image {
+        img {
+          transform: scale(1.08);
+        }
       }
 
       &::after {
@@ -46,4 +62,112 @@
   .stretched-link {
     pointer-events: none;
   }
+}
+
+/* =========================================
+   SLICK SLIDES
+========================================= */
+
+.slick__slide {
+  padding: 0 10px;
+  box-sizing: border-box;
+
+  opacity: 0.6;
+  transform: scale(0.50);
+  transform-origin: center center;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Center slide */
+.slick__slide.slick-center {
+  opacity: 1;
+  transform: scale(0.78);
+}
+
+/* =========================================
+   SLICK ARROWS
+========================================= */
+
+.slick__arrow {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -70px;
+
+  height: 48px;
+
+  z-index: 20;
+  pointer-events: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.slick__arrow .slick-prev,
+.slick__arrow .slick-next {
+  position: relative;
+
+  left: auto;
+  right: auto;
+  top: auto;
+
+  width: 48px;
+  height: 48px;
+
+  transform: none;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: $primary;
+  color: #fff;
+
+  pointer-events: auto;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0;
+
+  z-index: 21;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background: $primary;
+    color: #fff;
+    transform: scale(1.05);
+  }
+}
+
+/* Previous arrow */
+.slick__arrow .slick-prev::before {
+  content: "‹";
+  font-size: 32px;
+  line-height: 1;
+}
+
+/* Next arrow */
+.slick__arrow .slick-next::before {
+  content: "›";
+  font-size: 32px;
+  line-height: 1;
+}
+
+/* =========================================
+   SPACE FOR ARROWS
+========================================= */
+
+.slick--view--news {
+  padding-bottom: 70px;
 }

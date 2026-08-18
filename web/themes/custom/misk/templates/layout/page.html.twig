@@ -205,60 +205,27 @@
     </div>
 
 
+    {# FOOTER CONTENT #}
     <div class="container py-9 py-sm-12 position-relative">
 
       <div class="row">
 
-        {# ======================================================
+        {# --------------------------------------------------------
            FOOTER LEFT
-           TWO COLUMNS
-           ====================================================== #}
+           -------------------------------------------------------- #}
 
-        <div class="col-12 col-sm-7">
-
-          <div class="row">
-
-            {% for column in footer_left_columns %}
-
-              <div class="col-6 d-flex pt-1">
-
-                <div class="d-flex flex-column align-items-start gap-3">
-
-                  {% for item in column %}
-
-                    <a
-                      href="{{ item.url }}"
-                      class="text-white fw-semibold"
-                    >
-                      {{ item.title }}
-                    </a>
-
-                  {% endfor %}
-
-                </div>
-
-              </div>
-
-            {% endfor %}
+        <div class="col-12 col-sm-7 footer-left">
+          {{ page.footer_left }}
+        </div>
 
 
-            {# ==================================================
-               TWO IMAGES UNDER THE LEFT MENU
-               ================================================== #}
+        {# --------------------------------------------------------
+           FOOTER RIGHT
+           -------------------------------------------------------- #}
 
-            <div class="col-12 d-flex mt-5">
+        <div class="col-12 col-sm-5 footer-right">
 
-              <img
-                src="{{ directory }}/pictures/CIS.svg"
-                alt="">
-
-              <img
-                src="{{ directory }}/pictures/White.svg"
-                alt="">
-
-            </div>
-
-          </div>
+          {{ page.footer_right }}
 
         </div>
 
@@ -275,58 +242,30 @@
 
   <div class="footer-down container-fluid bg-primary-h py-9">
 
-    <div class="container">
+  <div class="container">
 
-      <div class="row bar">
+    <div class="row bar">
 
-        {# ======================================================
-           SOCIAL LINKS
-           ====================================================== #}
+      {# SOCIAL LINKS #}
+      <div class="d-flex justify-content-center justify-content-sm-start col-12 col-sm-6 gap-3 align-items-center">
 
-        <div class="d-flex justify-content-center justify-content-sm-start col-12 col-sm-6 gap-3 align-items-center">
+        {{ page.footer_bottom }}
 
-          {% for item in social_links_items %}
+      </div>
 
-            <a
-              href="{{ item.url }}"
-              {{ item.attributes }}
-              aria-label="{{ item.title }}"
-            >
-            </a>
 
-          {% endfor %}
+      {# POLICY MENU + COPYRIGHT #}
+      <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-center align-items-center justify-content-sm-start col-12 col-sm-6 gap-3 fs-6">
+
+        <div class="d-flex gap-3 justify-content-center">
+
+          {{ page.footer_policies }}
 
         </div>
 
+        <div>
 
-        {# ======================================================
-           POLICIES + COPYRIGHT
-           ====================================================== #}
-
-        <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-center align-items-center justify-content-sm-start col-12 col-sm-6 gap-3 fs-6">
-
-          <div class="d-flex gap-3 justify-content-center">
-
-            {% for item in policies_items %}
-
-              <a
-                href="{{ item.url }}"
-                class="text-dark text-decoration-none text-nowrap"
-              >
-                {{ item.title }}
-              </a>
-
-            {% endfor %}
-
-          </div>
-
-          <div>
-
-            <span class="text-dark">
-              © {{ "now"|date("Y") }}
-            </span>
-
-          </div>
+          {{ page.footer_copyright }}
 
         </div>
 
@@ -336,7 +275,10 @@
 
   </div>
 
+</div>
+
 </footer>
+
 
 
 

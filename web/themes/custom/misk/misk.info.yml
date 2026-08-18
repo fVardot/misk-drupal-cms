@@ -30,9 +30,7 @@ regions:
   footer_left: 'Footer Left'
   footer_right: 'Footer Right'
   footer_bottom: 'Footer Bottom'
-
-  footer_social: 'Footer Social'
-  footer_info: 'Footer Info'
+  footer_policies: 'Footer Policies'
   
   none: None
 

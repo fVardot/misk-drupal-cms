@@ -7,12 +7,13 @@
       position-relative overflow-hidden rounded-4">
 
       {% if image %}
-        <img
-          src="{{ image }}"
-          alt="{{ image_alt }}"
-          class="position-absolute top-0 start-0 bottom-0 end-0
-            w-100 h-100 object-fit-cover"
-        >
+        <div class="news-card-image
+          position-absolute top-0 start-0 bottom-0 end-0
+          w-100 h-100">
+
+          {{ image }}
+
+        </div>
       {% endif %}
 
       {% if date %}
@@ -35,16 +36,10 @@
       {% endif %}
 
       {% if url %}
-        <a
-          href="{{ url }}"
-          class="read-more btn-link-color link-text-decoration-style mt-auto"
-        >
-          <span class="read-more-text">
-            {{ 'Read more'|t }}
-          </span>
-          <span class="read-more-icon"></span>
-        </a>
-      {% endif %}
+  <div class="read-more mt-auto">
+    {{ url }}
+  </div>
+{% endif %}
 
     </div>
 

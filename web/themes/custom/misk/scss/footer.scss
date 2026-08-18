@@ -1,36 +1,62 @@
-@use "variables" as *;
-@use "mixins" as *;
 footer {
-  // ============================================================
-  // FOOTER TOP
-  // ============================================================
-
   .footer-up {
     min-height: 500px;
   }
 
-  // Footer Left menu.
-  .footer-left-menu {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 30px;
-    row-gap: 12px;
-    padding-top: 4px;
+  // ============================================================
+  // FOOTER LEFT
+  // ============================================================
 
-    a {
-      color: white;
+  .footer-left {
+    .region-footer-left {
+      display: block;
+    }
+
+    .menu--footer-left {
+      width: 100%;
+    }
+
+    .menu--footer-left > .nav {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(4, auto);
+      grid-auto-flow: column;
+      column-gap: 30px;
+      row-gap: 12px;
+
+      width: 100%;
+      margin: 0;
+      padding: 4px 0 0;
+      list-style: none;
+    }
+
+    .menu--footer-left > .nav > .nav-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu--footer-left > .nav > .nav-item > .nav-link {
+      display: inline-block;
+      color: #fff !important;
       font-weight: 600;
+      padding: 0;
+
       text-decoration: underline;
       text-decoration-color: transparent;
       transition: text-decoration-color 0.3s ease;
 
-      &:hover {
-        text-decoration-color: currentColor;
+      &:hover,
+      &:focus {
+        color: #fff !important;
+        text-decoration-color: #fff;
       }
     }
   }
 
-  // Two images below Footer Left menu.
+  // ============================================================
+  // FOOTER LEFT IMAGES
+  // ============================================================
+
   .footer-left-images {
     display: flex;
     align-items: center;
@@ -47,82 +73,141 @@ footer {
   // FOOTER BOTTOM
   // ============================================================
 
-  // Footer bottom background.
-  .footer-down{
+  .footer-down {
     background-color: $primary-hover !important;
   }
 
-  // Social Links.
+  // ============================================================
+  // SOCIAL LINKS
+  // ============================================================
+
   .footer-social {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-
-  a {
-    color: #000 !important;
-    font-size: 1.5rem;
-    line-height: 1;
-    text-decoration: none;
-
-    &:hover {
-      color: #000 !important;
-      text-decoration: none;
-    }
-  }
-}
-
-  // Policies + copyright.
-  .footer-policies {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    gap: 1rem;
 
-    .footer-policy-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
+    .region-footer-bottom {
+      width: 100%;
     }
 
-    a {
-      color: var(--bs-dark);
-      text-decoration: none;
-      white-space: nowrap;
+    .menu--social-links > .nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
 
-      &:hover {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu--social-links > .nav > .nav-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu--social-links > .nav > .nav-item > .nav-link {
+      display: inline-block;
+      color: #000 !important;
+      font-size: 1.5rem;
+      line-height: 1;
+      padding: 0;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: #000 !important;
         text-decoration: none;
       }
     }
   }
 
   // ============================================================
-  // RESPONSIVE
+  // POLICIES
   // ============================================================
 
-//   @include media-breakpoint-down(sm) {
-//     .footer-up {
-//       min-height: auto;
-//     }
+  .footer-policies {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
-//     .footer-left-menu {
-//       grid-template-columns: 1fr;
-//     }
+    .region-footer-policies {
+      width: 100%;
+    }
 
-//     .footer-left-images {
-//       flex-wrap: wrap;
-//     }
+    .menu--footer > .nav {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
 
-//     .footer-social {
-//       justify-content: center;
-//       margin-bottom: 1rem;
-//     }
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
 
-//     .footer-policies {
-//       justify-content: center;
-//       text-align: center;
-//     }
-//   }
+    .menu--footer > .nav > .nav-item {
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu--footer > .nav > .nav-item > .nav-link {
+      color: var(--bs-dark) !important;
+      padding: 0;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:hover,
+      &:focus {
+        color: var(--bs-dark) !important;
+        text-decoration: none;
+      }
+    }
+  }
+
+  // ============================================================
+  // MOBILE
+  // ============================================================
+
+  @include media-breakpoint-down(sm) {
+    .footer-up {
+      min-height: auto;
+    }
+
+    .footer-left-images {
+      flex-wrap: wrap;
+    }
+
+    .footer-social {
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      .menu--social-links > .nav {
+        justify-content: center;
+      }
+    }
+
+    .footer-policies {
+      justify-content: center;
+      text-align: center;
+
+      .menu--footer > .nav {
+        justify-content: center;
+      }
+    }
+
+    // IMPORTANT:
+    // Footer left stays TWO COLUMNS on mobile.
+    .footer-left {
+      .menu--footer-left > .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(4, auto);
+        grid-auto-flow: column;
+        column-gap: 20px;
+        row-gap: 12px;
+      }
+    }
+  }
 }

@@ -1,5 +1,5 @@
 @use "../../scss/variables" as *;
-@use "../../scss/mixins" as *;
+@use "../../scss/mixins.scss" as *;
 
 
 // ============================================================
@@ -9,24 +9,13 @@
 header {
   background-color: transparent !important;
 
+  .navbar {
+    background-color: transparent !important;
+  }
+
   .container-fluid {
     background-color: transparent !important;
   }
-}
-
-
-// ============================================================
-// Navbar
-// ============================================================
-
-.navbar {
-  background-color: transparent !important;
-
-  // Remove Bootstrap's default vertical navbar padding.
-  --bs-navbar-padding-y: 0 !important;
-
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
 }
 
 
@@ -51,25 +40,8 @@ header {
 // ============================================================
 
 .navbar-toggler {
-  width: 100%;
-
   background: transparent;
   box-shadow: none;
-
-  .header-logo {
-    margin-right: auto;
-  }
-}
-
-// On desktop, don't force the button to full width.
-@media (min-width: 576px) {
-  .navbar-toggler {
-    width: auto;
-
-    .header-logo {
-      margin-right: 0;
-    }
-  }
 }
 
 .navbar-toggler-icon {
@@ -91,9 +63,7 @@ header {
   position: relative;
 
   width: 10.25rem;
-  height: 3.7rem;
-
-  flex-shrink: 0;
+  height: 4.5rem;
 
   @include bg-icon("/themes/custom/misk/pictures/Subtract.svg");
 
@@ -164,7 +134,7 @@ header {
 
     height: 70vh;
 
-    margin-top: 0;
+    margin-top: 1.25rem;
 
     transform-origin: top;
 
@@ -183,8 +153,6 @@ header {
     flex-direction: column;
 
     height: 70vh;
-
-    margin-top: 0;
 
     transform-origin: top;
 

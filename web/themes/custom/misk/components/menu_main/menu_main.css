@@ -2,11 +2,15 @@
 header {
   background-color: transparent !important;
 }
-header .navbar {
-  background-color: transparent !important;
-}
 header .container-fluid {
   background-color: transparent !important;
+}
+
+.navbar {
+  background-color: transparent !important;
+  --bs-navbar-padding-y: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .header-logo {
@@ -20,10 +24,22 @@ header .container-fluid {
 }
 
 .navbar-toggler {
+  width: 100%;
   background: transparent;
   box-shadow: none;
 }
+.navbar-toggler .header-logo {
+  margin-right: auto;
+}
 
+@media (min-width: 576px) {
+  .navbar-toggler {
+    width: auto;
+  }
+  .navbar-toggler .header-logo {
+    margin-right: 0;
+  }
+}
 .navbar-toggler-icon {
   width: 2rem;
   height: 2rem;
@@ -42,7 +58,8 @@ header .container-fluid {
 .subtract-pic {
   position: relative;
   width: 10.25rem;
-  height: 4.5rem;
+  height: 3.7rem;
+  flex-shrink: 0;
   background-image: url("/themes/custom/misk/pictures/Subtract.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -86,6 +103,7 @@ header .container-fluid {
 }
 
 .dropdown-menu {
+  position: relative;
   width: 100%;
   height: 70vh;
   margin-top: 0;
@@ -97,12 +115,17 @@ header .container-fluid {
 .dropdown-menu.show {
   display: flex;
   flex-direction: column;
+  height: 70vh;
+  margin-top: 0;
   transform-origin: top;
   animation: slideDown 0.3s ease forwards;
+  border: none;
 }
 .dropdown-menu.hiding {
   display: flex !important;
   flex-direction: column;
+  height: 70vh;
+  margin-top: 0;
   transform-origin: top;
   animation: slideUp 0.3s ease forwards;
   pointer-events: none;
@@ -111,39 +134,79 @@ header .container-fluid {
 .navbar-nav {
   width: 100%;
   margin: 0;
+  margin-top: 3rem;
   padding: 0;
   list-style: none;
   flex-direction: column;
 }
-.navbar-nav .nav-item {
+.navbar-nav > .nav-item {
   width: 100%;
 }
-.navbar-nav .nav-link {
+.navbar-nav > .nav-item > .nav-link {
+  position: relative;
   width: 100%;
-  color: white;
-  font-size: 1.25rem;
+  color: white !important;
+  font-size: 1.875rem;
   font-weight: 600;
+  background-color: transparent !important;
 }
-.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus {
-  color: white;
+.navbar-nav > .nav-item > .nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0.1rem;
+  right: 0.1rem;
+  border-bottom: 1px solid transparent;
+}
+.navbar-nav > .nav-item > .nav-link:hover::before {
+  border-bottom-color: white;
+}
+.navbar-nav > .nav-item > .nav-link[aria-expanded=true]::before {
+  border-bottom-color: #d9e378;
+}
+.navbar-nav > .nav-item > .nav-link:hover, .navbar-nav > .nav-item > .nav-link:focus, .navbar-nav > .nav-item > .nav-link:active {
+  color: white !important;
+  background-color: transparent !important;
+  text-decoration: none;
+}
+.navbar-nav > .nav-item > .nav-link.active {
+  color: white !important;
+  background-color: transparent !important;
+}
+.navbar-nav > .nav-item > .nav-link[aria-expanded=true] {
+  color: white !important;
+  background-color: transparent !important;
+}
+.navbar-nav .dropdown-menu .dropdown-item {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: white !important;
+  font-size: 1.125rem;
+  font-weight: 600;
+  background-color: transparent !important;
+}
+.navbar-nav .dropdown-menu .dropdown-item:hover, .navbar-nav .dropdown-menu .dropdown-item:focus, .navbar-nav .dropdown-menu .dropdown-item:active {
+  color: white !important;
+  background-color: transparent !important;
   text-decoration: underline;
   text-decoration-color: white;
 }
-.navbar-nav .nav-link.active {
-  color: white;
-}
-
-.dropdown-item {
+.navbar-nav .dropdown-menu .dropdown-item.active {
   color: white !important;
+  background-color: transparent !important;
+}
+.navbar-nav .dropdown-menu .dropdown-item a {
+  color: white !important;
+  font-size: 1.125rem;
   font-weight: 600;
+  background-color: transparent !important;
 }
-.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active {
+.navbar-nav .dropdown-menu .dropdown-item a:hover, .navbar-nav .dropdown-menu .dropdown-item a:focus, .navbar-nav .dropdown-menu .dropdown-item a:active {
   color: white !important;
-  background-color: transparent;
-}
-.dropdown-item.active {
-  color: white !important;
-  background-color: transparent;
+  background-color: transparent !important;
+  text-decoration: underline;
+  text-decoration-color: white;
 }
 
 .menu-item--expanded {
@@ -151,6 +214,16 @@ header .container-fluid {
 }
 .menu-item--expanded > .dropdown-toggle {
   position: relative;
+  color: white !important;
+  background-color: transparent !important;
+}
+.menu-item--expanded > .dropdown-toggle[aria-expanded=true] {
+  color: white !important;
+  background-color: transparent !important;
+}
+.menu-item--expanded > .dropdown-toggle:hover, .menu-item--expanded > .dropdown-toggle:focus, .menu-item--expanded > .dropdown-toggle:active {
+  color: white !important;
+  background-color: transparent !important;
 }
 .menu-item--expanded > .dropdown-toggle::after {
   display: inline-block;
@@ -175,13 +248,66 @@ header .container-fluid {
   height: auto;
   margin: 0;
   padding: 0;
-  background-color: transparent;
+  background-color: transparent !important;
   box-shadow: none;
 }
 
 .navbar-nav .active > .nav-link,
 .navbar-nav .active > .dropdown-item {
-  color: white;
+  color: white !important;
+  background-color: transparent !important;
+}
+
+.menu-search {
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: auto;
+}
+
+.menu-search-divider {
+  width: 100%;
+  margin: 0 0 1.25rem;
+  border: 0;
+  border-top: 1px solid white;
+  opacity: 1;
+}
+
+.search-wrapper {
+  width: 100%;
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0 4rem 0 1.25rem;
+  border: 0;
+  border-radius: 0;
+  background-color: white;
+  color: black;
+  font-size: 1rem;
+}
+.search-input:focus {
+  border: 0;
+  box-shadow: none;
+  outline: none;
+}
+.search-input::placeholder {
+  color: black;
+  opacity: 1;
+}
+
+.search-icon {
+  right: 1.5rem;
+  color: #00372a;
+  font-size: 1.25rem;
+  pointer-events: none;
 }
 
 .close-btn {

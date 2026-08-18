@@ -8,19 +8,24 @@ props:
     title:
       type: string
       title: Title
+      default: ''
 
     image:
       type: string
       title: Image
+      default: ''
 
     image_alt:
       type: string
       title: Image alt text
+      default: ''
 
     date:
       type: string
       title: Date
+      default: ''
 
     url:
       type: string
       title: URL
+      default: ''
