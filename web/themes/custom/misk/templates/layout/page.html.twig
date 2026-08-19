@@ -10,7 +10,7 @@
  * Available variables:
  *
  * General utility variables:
- * - base_path: The base URL path of the Drupal installation. Will usually be
+ * - base_path: The base URL of the Drupal installation. Will usually be
  *   "/" unless you have installed Drupal in a sub-directory.
  * - is_front: A flag indicating if the current page is the front page.
  * - logged_in: A flag indicating if the user is registered and signed in.
@@ -21,113 +21,146 @@
  * - front_page: The URL of the front page. Use this instead of base_path when
  *   linking to the front page. This includes the language domain or prefix.
  * - logo: The url of the logo image, as defined in theme settings.
- * - site_name: The name of the site. This is empty when displaying the site
- *   name has been disabled in the theme settings.
- * - site_slogan: The slogan of the site. This is empty when displaying the site
- *   slogan has been disabled in theme settings.
-
- * Page content (in order of occurrence in the default page.html.twig):
- * - node: Fully loaded node, if there is an automatically-loaded node
- *   associated with the page and the node ID is the second argument in the
- *   page's path (e.g. node/12345 and node/12345/revisions, but not
- *   comment/reply/12345).
+ * - site_name: This is empty when displaying the site name has been disabled.
+ * - site_slogan: This is empty when displaying the site slogan.
  *
  * Regions:
- * - page.top_header: Items for the top header region.
- * - page.top_header_form: Items for the top header form region.
- * - page.header: Items for the header region.
- * - page.header_form: Items for the header form region.
- * - page.highlighted: Items for the highlighted region.
- * - page.primary_menu: Items for the primary menu region.
- * - page.secondary_menu: Items for the secondary menu region.
- * - page.featured_top: Items for the featured top region.
- * - page.content: The main content of the current page.
- * - page.sidebar_first: Items for the first sidebar.
- * - page.sidebar_second: Items for the second sidebar.
- * - page.featured_bottom_first: Items for the first featured bottom region.
- * - page.featured_bottom_second: Items for the second featured bottom region.
- * - page.featured_bottom_third: Items for the third featured bottom region.
- * - page.footer_first: Items for the first footer column.
- * - page.footer_second: Items for the second footer column.
- * - page.footer_third: Items for the third footer column.
- * - page.footer_fourth: Items for the fourth footer column.
- * - page.footer_fifth: Items for the fifth footer column.
- * - page.breadcrumb: Items for the breadcrumb region.
- *
- * Theme variables:
- * - navbar_top_attributes: Items for the header region.
- * - navbar_attributes: Items for the header region.
- * - content_attributes: Items for the header region.
- * - sidebar_first_attributes: Items for the highlighted region.
- * - sidebar_second_attributes: Items for the primary menu region.
- * - sidebar_collapse: If the sidebar_first will collapse.
+ * - page.top_header
+ * - page.top_header_form
+ * - page.header
+ * - page.header_form
+ * - page.highlighted
+ * - page.primary_menu
+ * - page.secondary_menu
+ * - page.featured_top
+ * - page.content
+ * - page.sidebar_first
+ * - page.sidebar_second
+ * - page.featured_bottom_first
+ * - page.featured_bottom_second
+ * - page.featured_bottom_third
+ * - page.footer_first
+ * - page.footer_second
+ * - page.footer_third
+ * - page.footer_fourth
+ * - page.footer_fifth
+ * - page.breadcrumb
  *
  * @see template_preprocess_page()
  * @see bootstrap_preprocess_page()
  * @see html.html.twig
  */
 #}
+
 {# see https://www.drupal.org/project/drupal/issues/953034#comment-14192130 #}
 {% set sidebar_first_exists = page.sidebar_first|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
 {% set sidebar_second_exists = page.sidebar_second|render|striptags('<img><video><audio><drupal-render-placeholder>')|trim is not empty %}
 
 <div id="page-wrapper">
   <div id="page">
+
     {% block head %}
+
       {% if page.secondary_menu or page.top_header or page.top_header_form %}
         <nav{{ navbar_top_attributes }}>
           {% if container_navbar %}
-          <div class="container">
+            <div class="container">
           {% endif %}
-            {{ page.secondary_menu }}
-            {{ page.top_header }}
-            {% if page.top_header_form %}
-              <div class="form-inline navbar-form ms-auto">
-                {{ page.top_header_form }}
-              </div>
-            {% endif %}
+
+          {{ page.secondary_menu }}
+          {{ page.top_header }}
+
+          {% if page.top_header_form %}
+            <div class="form-inline navbar-form ms-auto">
+              {{ page.top_header_form }}
+            </div>
+          {% endif %}
+
           {% if container_navbar %}
-          </div>
+            </div>
           {% endif %}
         </nav>
       {% endif %}
+
+
       {% if page.header or page.primary_menu or page.header_form %}
-        <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
+        <header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t }}">
+
           <nav{{ navbar_attributes }}>
+
             {% if container_navbar %}
-            <div class="container">
+              <div class="container">
             {% endif %}
-              {{ page.header }}
-              {% if page.primary_menu or page.header_form %}
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="{{ navbar_collapse_btn_data }}" data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="{{ navbar_collapse_class }}" id="CollapsingNavbar">
-                  {% if navbar_offcanvas %}
-                    <div class="offcanvas-header">
-                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                  {% endif %}
-                  {{ page.primary_menu }}
-                  {% if page.header_form %}
-                    <div class="form-inline navbar-form justify-content-end">
-                      {{ page.header_form }}
-                    </div>
-                  {% endif %}
-                  {% if navbar_offcanvas %}
-                    </div>
-                  {% endif %}
-                </div>
-              {% endif %}
-              {% if sidebar_collapse %}
-                <button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
-              {% endif %}
+
+            {{ page.header }}
+
+            {% if page.primary_menu or page.header_form %}
+
+              <button
+                class="navbar-toggler collapsed"
+                type="button"
+                data-bs-toggle="{{ navbar_collapse_btn_data }}"
+                data-bs-target="#CollapsingNavbar"
+                aria-controls="CollapsingNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="{{ navbar_collapse_class }}" id="CollapsingNavbar">
+
+                {% if navbar_offcanvas %}
+                  <div class="offcanvas-header">
+                    <button
+                      type="button"
+                      class="btn-close text-reset"
+                      data-bs-dismiss="offcanvas"
+                      aria-label="Close">
+                    </button>
+                  </div>
+
+                  <div class="offcanvas-body">
+                {% endif %}
+
+                {{ page.primary_menu }}
+
+                {% if page.header_form %}
+                  <div class="form-inline navbar-form justify-content-end">
+                    {{ page.header_form }}
+                  </div>
+                {% endif %}
+
+                {% if navbar_offcanvas %}
+                  </div>
+                {% endif %}
+
+              </div>
+
+            {% endif %}
+
+            {% if sidebar_collapse %}
+              <button
+                class="navbar-toggler navbar-toggler-left collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#CollapsingLeft"
+                aria-controls="CollapsingLeft"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+              </button>
+            {% endif %}
+
             {% if container_navbar %}
-            </div>
+              </div>
             {% endif %}
+
           </nav>
         </header>
       {% endif %}
+
     {% endblock %}
+
+
     {% if page.highlighted %}
       <div class="highlighted">
         <aside class="{{ container }} section clearfix" role="complementary">
@@ -135,6 +168,8 @@
         </aside>
       </div>
     {% endif %}
+
+
     {% if page.featured_top %}
       {% block featured %}
         <div class="featured-top">
@@ -144,17 +179,32 @@
         </div>
       {% endblock %}
     {% endif %}
+
+
     <div id="main-wrapper" class="layout-main-wrapper clearfix">
+
       {% block content %}
+
         <div id="main">
+
           {{ page.breadcrumb }}
-          <div class="row row-offcanvas row-offcanvas-left clearfix">
-              <main{{ content_attributes }}>
-                <section class="section">
-                  <a href="#main-content" id="main-content" tabindex="-1"></a>
-                  {{ page.content }}
-                </section>
-              </main>
+
+          {# Added gx-0 to remove horizontal Bootstrap row gutters #}
+          <div class="row row-offcanvas row-offcanvas-left clearfix mx-0 gx-0">
+
+            <main{{ content_attributes }}>
+
+              <section class="section">
+
+                <a href="#main-content" id="main-content" tabindex="-1"></a>
+
+                {{ page.content }}
+
+              </section>
+
+            </main>
+
+
             {% if sidebar_first_exists %}
               <div{{ sidebar_first_attributes }}>
                 <aside class="section" role="complementary">
@@ -162,6 +212,8 @@
                 </aside>
               </div>
             {% endif %}
+
+
             {% if sidebar_second_exists %}
               <div{{ sidebar_second_attributes }}>
                 <aside class="section" role="complementary">
@@ -169,10 +221,16 @@
                 </aside>
               </div>
             {% endif %}
+
           </div>
+
         </div>
+
       {% endblock %}
+
     </div>
+
+
     {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
       <div class="featured-bottom">
         <aside class="{{ container }} clearfix" role="complementary">
@@ -182,6 +240,8 @@
         </aside>
       </div>
     {% endif %}
+
+
     <footer class="footer">
 
   {# ============================================================
@@ -190,16 +250,13 @@
 
   <div class="footer-up bg-primary position-relative overflow-hidden">
 
-    {# RIGHT SIDE IMAGE #}
+    {# RIGHT SIDE IMAGE - footer-right-img #}
     <div class="row g-0 position-absolute top-0 bottom-0 start-0 end-0 d-none d-sm-flex">
 
       <div class="col-7"></div>
 
-      <div class="col-5 p-0">
-        <img
-          src="{{ directory }}/pictures/pexels-fauxels.png"
-          class="w-100 h-100 object-fit-cover"
-          alt="">
+      <div class="col-5 p-0 footer-right-image">
+        {{ page.footer_right }}
       </div>
 
     </div>
@@ -215,17 +272,25 @@
            -------------------------------------------------------- #}
 
         <div class="col-12 col-sm-7 footer-left">
-          {{ page.footer_left }}
-        </div>
+
+          <div class="row">
+
+            {# FOOTER MENU #}
+            <div class="col-12">
+
+              {{ page.footer_left }}
+
+            </div>
 
 
-        {# --------------------------------------------------------
-           FOOTER RIGHT
-           -------------------------------------------------------- #}
+            {# FOOTER LEFT IMAGES #}
+            <div class="col-12 d-flex align-items-center gap-3 footer-left-images">
 
-        <div class="col-12 col-sm-5 footer-right">
+              {{ page.footer_left_images }}
 
-          {{ page.footer_right }}
+            </div>
+
+          </div>
 
         </div>
 
@@ -242,30 +307,32 @@
 
   <div class="footer-down container-fluid bg-primary-h py-9">
 
-  <div class="container">
+    <div class="container">
 
-    <div class="row bar">
+      <div class="row bar">
 
-      {# SOCIAL LINKS #}
-      <div class="d-flex justify-content-center justify-content-sm-start col-12 col-sm-6 gap-3 align-items-center">
+        {# SOCIAL LINKS #}
+        <div class="d-flex justify-content-center justify-content-sm-start col-12 col-sm-6 gap-3 align-items-center">
 
-        {{ page.footer_bottom }}
-
-      </div>
-
-
-      {# POLICY MENU + COPYRIGHT #}
-      <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-center align-items-center justify-content-sm-start col-12 col-sm-6 gap-3 fs-6">
-
-        <div class="d-flex gap-3 justify-content-center">
-
-          {{ page.footer_policies }}
+          {{ page.footer_bottom }}
 
         </div>
 
-        <div>
 
-          {{ page.footer_copyright }}
+        {# POLICY MENU + COPYRIGHT #}
+        <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-center align-items-center justify-content-sm-start col-12 col-sm-6 gap-3 fs-6">
+
+          <div class="d-flex gap-3 justify-content-center">
+
+            {{ page.footer_policies }}
+
+          </div>
+
+          <div>
+
+            {{ page.footer_copyright }}
+
+          </div>
 
         </div>
 
@@ -275,13 +342,7 @@
 
   </div>
 
-</div>
-
 </footer>
-
-
-
-
 
   </div>
 </div>

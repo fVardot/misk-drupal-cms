@@ -140,7 +140,9 @@ header .container-fluid {
   flex-direction: column;
 }
 .navbar-nav > .nav-item {
-  width: 100%;
+  width: auto;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 .navbar-nav > .nav-item > .nav-link {
   position: relative;
@@ -344,3 +346,5 @@ header .container-fluid {
     opacity: 0;
   }
 }
+
+/*# sourceMappingURL=menu_main.css.map */

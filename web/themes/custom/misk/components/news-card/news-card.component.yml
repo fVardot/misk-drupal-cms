@@ -2,6 +2,10 @@ name: News Card
 status: stable
 group: Misk
 
+libraryOverrides:
+  js:
+    news-card.js: {}
+
 props:
   type: object
   properties:

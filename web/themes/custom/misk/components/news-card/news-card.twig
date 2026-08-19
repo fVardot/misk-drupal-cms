@@ -17,13 +17,17 @@
       {% endif %}
 
       {% if date %}
-        <div class="date bg-primary rounded-pill align-self-start
-          text-white mb-10 ms-10 mb-sm-5 ms-sm-5 px-2 py-1">
+  <div class="date bg-primary rounded-pill align-self-start
+    text-white mb-10 ms-10 mb-sm-5 ms-sm-5 px-2 py-1">
 
-          {{ date }}
+    {% set date_parts = date|split(', ') %}
+    {% set date_without_time = date_parts[1]|split(' - ')|first %}
+    {% set date_values = date_without_time|split(' ') %}
 
-        </div>
-      {% endif %}
+    {{ date_values[1] }} {{ date_values[0] }}, {{ date_values[2] }}
+
+  </div>
+{% endif %}
 
     </div>
 
@@ -35,12 +39,13 @@
         </h3>
       {% endif %}
 
-      {% if url %}
-  <div class="read-more mt-auto">
-    {{ url }}
-  </div>
+      {% if id and entity_type == 'node' %}
+  <a href="{{ path('entity.node.canonical', {'node': id}) }}"
+     class="read-more btn-link-color link-text-decoration-style mt-auto">
+    <span class="read-more-text">Read more</span>
+    <span class="read-more-icon"></span>
+  </a>
 {% endif %}
-
     </div>
 
   </div>

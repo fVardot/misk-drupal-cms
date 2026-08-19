@@ -51,21 +51,83 @@ footer {
         text-decoration-color: #fff;
       }
     }
+
+    // ==========================================================
+    // FOOTER IMAGE BLOCKS
+    //
+    // These are the two Content blocks:
+    // footer-left-img-1
+    // footer-left-img-2
+    //
+    // We do NOT change the menu.
+    // ==========================================================
+
+    .block[id*="footerleftimg1"],
+    .block[id*="footerleftimg2"] {
+      display: inline-block;
+      vertical-align: middle;
+
+      margin-top: 40px;
+      margin-right: 16px;
+
+      max-width: calc(50% - 16px);
+    }
+
+    .block[id*="footerleftimg1"] img,
+    .block[id*="footerleftimg2"] img {
+      display: block;
+
+      width: auto;
+      max-width: 100%;
+      height: auto;
+
+      object-fit: contain;
+    }
+
+    // Remove possible default margins from the rich-text content.
+    .block[id*="footerleftimg1"] .field,
+    .block[id*="footerleftimg2"] .field,
+    .block[id*="footerleftimg1"] .text-formatted,
+    .block[id*="footerleftimg2"] .text-formatted {
+      margin: 0;
+      padding: 0;
+    }
   }
 
   // ============================================================
-  // FOOTER LEFT IMAGES
+  // FOOTER RIGHT IMAGE
+  //
+  // This is the Content block:
+  // footer-right-img
   // ============================================================
 
-  .footer-left-images {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-top: 40px;
+  .footer-right-image {
+    height: 100%;
+
+    .block {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .field,
+    .field__item,
+    .text-formatted {
+      width: 100%;
+      height: 100%;
+    }
 
     img {
-      max-width: 100%;
-      height: auto;
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      max-width: none;
+
+      object-fit: cover;
+      object-position: center;
     }
   }
 
@@ -176,8 +238,20 @@ footer {
       min-height: auto;
     }
 
-    .footer-left-images {
-      flex-wrap: wrap;
+    // Footer images.
+    .footer-left {
+      .block[id*="footerleftimg1"],
+      .block[id*="footerleftimg2"] {
+        max-width: 100%;
+        margin-top: 24px;
+        margin-right: 12px;
+      }
+
+      .block[id*="footerleftimg1"] img,
+      .block[id*="footerleftimg2"] img {
+        max-width: 100%;
+        height: auto;
+      }
     }
 
     .footer-social {

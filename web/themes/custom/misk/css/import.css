@@ -15060,51 +15060,15 @@ footer .footer-left .menu--footer-left > .nav > .nav-item > .nav-link:hover, foo
   color: #fff !important;
   text-decoration-color: #fff;
 }
-footer .footer-left .block[id*=footerleftimg1],
-footer .footer-left .block[id*=footerleftimg2] {
-  display: inline-block;
-  vertical-align: middle;
+footer .footer-left-images {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   margin-top: 40px;
-  margin-right: 16px;
-  max-width: calc(50% - 16px);
 }
-footer .footer-left .block[id*=footerleftimg1] img,
-footer .footer-left .block[id*=footerleftimg2] img {
-  display: block;
-  width: auto;
+footer .footer-left-images img {
   max-width: 100%;
   height: auto;
-  object-fit: contain;
-}
-footer .footer-left .block[id*=footerleftimg1] .field,
-footer .footer-left .block[id*=footerleftimg2] .field,
-footer .footer-left .block[id*=footerleftimg1] .text-formatted,
-footer .footer-left .block[id*=footerleftimg2] .text-formatted {
-  margin: 0;
-  padding: 0;
-}
-footer .footer-right-image {
-  height: 100%;
-}
-footer .footer-right-image .block {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-footer .footer-right-image .field,
-footer .footer-right-image .field__item,
-footer .footer-right-image .text-formatted {
-  width: 100%;
-  height: 100%;
-}
-footer .footer-right-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: cover;
-  object-position: center;
 }
 footer .footer-down {
   background-color: #c2d500 !important;
@@ -15179,16 +15143,8 @@ footer .footer-policies .menu--footer > .nav > .nav-item > .nav-link:hover, foot
   footer .footer-up {
     min-height: auto;
   }
-  footer .footer-left .block[id*=footerleftimg1],
-  footer .footer-left .block[id*=footerleftimg2] {
-    max-width: 100%;
-    margin-top: 24px;
-    margin-right: 12px;
-  }
-  footer .footer-left .block[id*=footerleftimg1] img,
-  footer .footer-left .block[id*=footerleftimg2] img {
-    max-width: 100%;
-    height: auto;
+  footer .footer-left-images {
+    flex-wrap: wrap;
   }
   footer .footer-social {
     justify-content: center;
@@ -15237,16 +15193,4 @@ footer .footer-policies .menu--footer > .nav > .nav-item > .nav-link:hover, foot
   text-decoration: none;
 }
 
-.main-content {
-  min-width: 0;
-  max-width: 100%;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-html,
-body {
-  overflow-x: hidden;
-}
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=import.css.map */
