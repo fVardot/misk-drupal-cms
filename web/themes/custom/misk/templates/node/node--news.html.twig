@@ -1,0 +1,84 @@
+{# =========================
+   News header / banner
+   ========================= #}
+
+<div class="bg-tertiary-h news-header">
+
+  <div class="header-admission container d-flex align-items-end">
+    <h1 class="fw-semibold">
+      {{ label }}
+    </h1>
+  </div>
+
+  <div class="bar--admission">
+    <div class="container position-relative">
+      <div class="row align-items-center py-1">
+
+        {# News date #}
+        <div class="col d-flex align-items-center">
+          <span class="date">
+            {{ node.getCreatedTime()|date('F j, Y') }}
+          </span>
+        </div>
+
+        {# Social icons #}
+        <div class="col-auto d-flex gap-3 align-items-center news-social">
+          <a href="#" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+          <a href="#" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a href="#" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+
+          <a href="#" aria-label="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{# =========================
+   News image
+   ========================= #}
+
+{% if content.field_image %}
+  <div class="news__image">
+    {{ content.field_image }}
+  </div>
+{% endif %}
+
+
+{# =========================
+   News body
+   ========================= #}
+
+<div class="container">
+  <div class="news__body">
+
+    {% if node.field_body.value %}
+      {{ node.field_body.value|raw }}
+    {% endif %}
+
+  </div>
+</div>
+
+
+{# =========================
+   Other News / Slick carousel
+   ========================= #}
+
+{% if news_carousel %}
+  <div class="news__related">
+    {{ news_carousel }}
+  </div>
+{% endif %}

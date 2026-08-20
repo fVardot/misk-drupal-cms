@@ -1,112 +1,208 @@
 footer {
+
+  // ============================================================
+  // FOOTER UP
+  // ============================================================
+
   .footer-up {
     min-height: 500px;
   }
+
 
   // ============================================================
   // FOOTER LEFT
   // ============================================================
 
-  .footer-left {
-    .region-footer-left {
-      display: block;
-    }
+  .region-footer-left {
 
-    .menu--footer-left {
-      width: 100%;
-    }
+    // IMPORTANT:
+    // Bootstrap gives the region "row".
+    // We don't want the blocks becoming Bootstrap columns.
+    display: grid !important;
 
-    .menu--footer-left > .nav {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(4, auto);
-      grid-auto-flow: column;
-      column-gap: 30px;
-      row-gap: 12px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 
-      width: 100%;
-      margin: 0;
-      padding: 4px 0 0;
-      list-style: none;
-    }
+    column-gap: 30px;
 
-    .menu--footer-left > .nav > .nav-item {
-      margin: 0;
-      padding: 0;
-    }
+    row-gap: 40px;
 
-    .menu--footer-left > .nav > .nav-item > .nav-link {
-      display: inline-block;
+    width: 100%;
+
+    margin: 0;
+  }
+
+
+  // ============================================================
+  // FOOTER MENU
+  // ============================================================
+
+  #block-misk-footerleft {
+
+    // Menu takes the full width.
+    grid-column: 1 / -1;
+
+    width: 100%;
+  }
+
+
+  #block-misk-footerleft .nav {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-rows: repeat(4, auto);
+
+    grid-auto-flow: column;
+
+    column-gap: 30px;
+
+    row-gap: 12px;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 4px 0 0;
+
+    list-style: none;
+  }
+
+
+  #block-misk-footerleft .nav-item {
+
+    margin: 0;
+    padding: 0;
+  }
+
+
+  #block-misk-footerleft .nav-link {
+
+    display: inline-block;
+
+    color: #fff !important;
+
+    font-weight: 600;
+
+    padding: 0;
+
+    text-decoration: underline;
+
+    text-decoration-color: transparent;
+
+    transition: text-decoration-color 0.3s ease;
+
+    &:hover,
+    &:focus {
+
       color: #fff !important;
-      font-weight: 600;
-      padding: 0;
 
-      text-decoration: underline;
-      text-decoration-color: transparent;
-      transition: text-decoration-color 0.3s ease;
-
-      &:hover,
-      &:focus {
-        color: #fff !important;
-        text-decoration-color: #fff;
-      }
-    }
-
-    // ==========================================================
-    // FOOTER IMAGE BLOCKS
-    //
-    // These are the two Content blocks:
-    // footer-left-img-1
-    // footer-left-img-2
-    //
-    // We do NOT change the menu.
-    // ==========================================================
-
-    .block[id*="footerleftimg1"],
-    .block[id*="footerleftimg2"] {
-      display: inline-block;
-      vertical-align: middle;
-
-      margin-top: 40px;
-      margin-right: 16px;
-
-      max-width: calc(50% - 16px);
-    }
-
-    .block[id*="footerleftimg1"] img,
-    .block[id*="footerleftimg2"] img {
-      display: block;
-
-      width: auto;
-      max-width: 100%;
-      height: auto;
-
-      object-fit: contain;
-    }
-
-    // Remove possible default margins from the rich-text content.
-    .block[id*="footerleftimg1"] .field,
-    .block[id*="footerleftimg2"] .field,
-    .block[id*="footerleftimg1"] .text-formatted,
-    .block[id*="footerleftimg2"] .text-formatted {
-      margin: 0;
-      padding: 0;
+      text-decoration-color: #fff;
     }
   }
 
+
   // ============================================================
-  // FOOTER RIGHT IMAGE
+  // FOOTER IMAGE 1
   //
-  // This is the Content block:
-  // footer-right-img
+  // These are ACTUAL Drupal blocks:
+  // #block-misk-footerleftimg1
+  // #block-misk-footerleftimg2
+  //
+  // They are direct children of region-footer-left.
+  // ============================================================
+
+  #block-misk-footerleftimg1,
+  #block-misk-footerleftimg2 {
+
+    align-self: center;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    width: auto !important;
+  }
+
+
+  // Image 1
+  #block-misk-footerleftimg1 {
+
+    justify-self: start;
+
+    max-width: 240px;
+  }
+
+
+  #block-misk-footerleftimg1 img {
+
+    display: block;
+
+    width: 240px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+  }
+
+
+  // ============================================================
+  // FOOTER IMAGE 2
+  //
+  // SMALLER.
+  //
+  // Change 85px if you want it bigger/smaller.
+  // ============================================================
+
+  #block-misk-footerleftimg2 {
+
+    justify-self: start;
+
+    max-width: 185px;
+  }
+
+
+  #block-misk-footerleftimg2 img {
+
+    display: block;
+
+    width: 185px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+  }
+
+
+  // Remove Drupal rich-text margins.
+  #block-misk-footerleftimg1 .field,
+  #block-misk-footerleftimg2 .field,
+  #block-misk-footerleftimg1 .text-formatted,
+  #block-misk-footerleftimg2 .text-formatted {
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+  }
+
+
+  // ============================================================
+  // RIGHT SIDE IMAGE
   // ============================================================
 
   .footer-right-image {
+
     height: 100%;
 
     .block {
+
       width: 100%;
       height: 100%;
+
       margin: 0;
       padding: 0;
     }
@@ -114,11 +210,13 @@ footer {
     .field,
     .field__item,
     .text-formatted {
+
       width: 100%;
       height: 100%;
     }
 
     img {
+
       display: block;
 
       width: 100%;
@@ -127,161 +225,390 @@ footer {
       max-width: none;
 
       object-fit: cover;
+
       object-position: center;
     }
   }
 
+
   // ============================================================
-  // FOOTER BOTTOM
+  // FOOTER DOWN
   // ============================================================
 
   .footer-down {
+
     background-color: $primary-hover !important;
   }
+
 
   // ============================================================
   // SOCIAL LINKS
   // ============================================================
 
-  .footer-social {
+  .footer-social-wrapper {
+
     display: flex;
+
     align-items: center;
-
-    .region-footer-bottom {
-      width: 100%;
-    }
-
-    .menu--social-links > .nav {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 1rem;
-
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .menu--social-links > .nav > .nav-item {
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu--social-links > .nav > .nav-item > .nav-link {
-      display: inline-block;
-      color: #000 !important;
-      font-size: 1.5rem;
-      line-height: 1;
-      padding: 0;
-      text-decoration: none;
-
-      &:hover,
-      &:focus {
-        color: #000 !important;
-        text-decoration: none;
-      }
-    }
   }
 
+
+  .region-footer-bottom {
+
+    display: flex !important;
+
+    align-items: center;
+
+    width: auto !important;
+
+    margin: 0;
+  }
+
+
+  .menu--social-links {
+
+    margin: 0;
+
+    padding: 0;
+  }
+
+
+  .menu--social-links > .nav {
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    align-items: center;
+
+    gap: 0.7rem;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+  }
+
+
+  .menu--social-links > .nav > .nav-item {
+
+    display: flex;
+
+    align-items: center;
+
+    margin: 0;
+
+    padding: 0;
+  }
+
+
   // ============================================================
-  // POLICIES
+  // ⭐ SOCIAL ICON SIZE ⭐
+  //
+  // THIS is where you control the icon size.
+  //
+  // 20px = small
+  // 24px = medium
+  // 28px = bigger
+  // 32px = large
   // ============================================================
 
-  .footer-policies {
+  .menu--social-links > .nav > .nav-item > svg {
+
+    width: 28px !important;
+
+    height: 28px !important;
+
+    display: block;
+
+    color: #000 !important;
+
+    fill: currentColor;
+
+    flex: 0 0 28px;
+  }
+
+
+  // ============================================================
+  // POLICIES + COPYRIGHT
+  //
+  // THEY ARE BOTH DIRECT CHILDREN OF:
+  //
+  // .region-footer-policies
+  //
+  // according to your actual HTML.
+  // ============================================================
+
+  .footer-bottom-right {
+
     display: flex;
+
     align-items: center;
+  }
+
+
+  .region-footer-policies {
+
+    // CRITICAL
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    align-items: center;
+
     justify-content: flex-start;
 
-    .region-footer-policies {
-      width: 100%;
-    }
+    gap: 16px;
 
-    .menu--footer > .nav {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 1rem;
+    width: 100% !important;
 
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+    margin: 0;
 
-    .menu--footer > .nav > .nav-item {
-      margin: 0;
-      padding: 0;
-    }
+    padding: 0;
+  }
 
-    .menu--footer > .nav > .nav-item > .nav-link {
+
+  // ============================================================
+  // POLICY MENU BLOCK
+  // ============================================================
+
+  #block-misk-policies {
+
+    flex: 0 0 auto;
+
+    width: auto;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+  }
+
+
+  #block-misk-policies .nav {
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    flex-wrap: nowrap !important;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+  }
+
+
+  #block-misk-policies .nav-item {
+
+    flex: 0 0 auto;
+
+    margin: 0;
+
+    padding: 0;
+  }
+
+
+  #block-misk-policies .nav-link {
+
+    display: inline-block;
+
+    color: var(--bs-dark) !important;
+
+    padding: 0;
+
+    white-space: nowrap;
+
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+
       color: var(--bs-dark) !important;
-      padding: 0;
-      text-decoration: none;
-      white-space: nowrap;
 
-      &:hover,
-      &:focus {
-        color: var(--bs-dark) !important;
-        text-decoration: none;
-      }
+      text-decoration: none;
     }
   }
+
+
+  // ============================================================
+  // COPYRIGHT BLOCK
+  //
+  // THIS IS THE ACTUAL BLOCK FROM YOUR HTML:
+  //
+  // #block-misk-copyright
+  // ============================================================
+
+  #block-misk-copyright {
+
+    flex: 0 0 auto;
+
+    width: auto;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    white-space: nowrap;
+  }
+
+
+  #block-misk-copyright .content {
+
+    margin: 0;
+
+    padding: 0;
+  }
+
+
+  #block-misk-copyright .field {
+
+    margin: 0;
+
+    padding: 0;
+  }
+
+
+  #block-misk-copyright p {
+
+    margin: 0;
+
+    padding: 0;
+
+    color: var(--bs-dark);
+  }
+
 
   // ============================================================
   // MOBILE
   // ============================================================
 
   @include media-breakpoint-down(sm) {
+
     .footer-up {
+
       min-height: auto;
     }
 
-    // Footer images.
-    .footer-left {
-      .block[id*="footerleftimg1"],
-      .block[id*="footerleftimg2"] {
-        max-width: 100%;
-        margin-top: 24px;
-        margin-right: 12px;
-      }
 
-      .block[id*="footerleftimg1"] img,
-      .block[id*="footerleftimg2"] img {
-        max-width: 100%;
-        height: auto;
-      }
+    // ----------------------------------------------------------
+    // FOOTER LEFT
+    // ----------------------------------------------------------
+
+    .region-footer-left {
+
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+      column-gap: 12px;
+
+      row-gap: 24px;
     }
 
-    .footer-social {
+
+    // Menu remains two columns.
+    #block-misk-footerleft .nav {
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      grid-template-rows: repeat(4, auto);
+
+      grid-auto-flow: column;
+
+      column-gap: 20px;
+
+      row-gap: 12px;
+    }
+
+
+    // Smaller images on mobile.
+    #block-misk-footerleftimg1 {
+
+      max-width: 210px;
+    }
+
+
+    #block-misk-footerleftimg1 img {
+
+      width: 210px;
+    }
+
+
+    #block-misk-footerleftimg2 {
+
+      max-width: 170px;
+    }
+
+
+    #block-misk-footerleftimg2 img {
+
+      width: 170px;
+    }
+
+
+    // ----------------------------------------------------------
+    // SOCIAL
+    // ----------------------------------------------------------
+
+    .footer-social-wrapper {
+
       justify-content: center;
+
       margin-bottom: 1rem;
-
-      .menu--social-links > .nav {
-        justify-content: center;
-      }
     }
 
-    .footer-policies {
+
+    .region-footer-bottom {
+
       justify-content: center;
-      text-align: center;
-
-      .menu--footer > .nav {
-        justify-content: center;
-      }
     }
 
-    // IMPORTANT:
-    // Footer left stays TWO COLUMNS on mobile.
-    .footer-left {
-      .menu--footer-left > .nav {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: repeat(4, auto);
-        grid-auto-flow: column;
-        column-gap: 20px;
-        row-gap: 12px;
-      }
+
+    // Still 28px on mobile.
+    .menu--social-links > .nav > .nav-item > svg {
+
+      width: 24px !important;
+
+      height: 24px !important;
+
+      flex-basis: 28px;
+    }
+
+
+    // ----------------------------------------------------------
+    // POLICIES + COPYRIGHT
+    // ----------------------------------------------------------
+
+    .footer-bottom-right {
+
+      justify-content: center;
+
+      overflow-x: auto;
+    }
+
+
+    .region-footer-policies {
+
+      justify-content: center;
+
+      width: max-content !important;
+
+      gap: 10px;
+    }
+
+
+    #block-misk-policies .nav {
+
+      gap: 10px;
     }
   }
 }

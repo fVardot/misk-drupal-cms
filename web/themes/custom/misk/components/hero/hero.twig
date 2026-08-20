@@ -1,0 +1,173 @@
+{%
+  set classes = [
+    'hero',
+    bg_color ? bg_color,
+    hero_size ? hero_size,
+    canvas_is_preview ? 'canvas-preview',
+    margin_top ? margin_top,
+    margin_bottom ? margin_bottom,
+    tertiary ? 'hero--tertiary',
+    tertiary_hover ? 'hero--tertiary-hover',
+    extra_classes ? extra_classes|join(' '),
+  ]
+%}
+
+{% set attributes = attributes.addClass(classes) %}
+
+{# Pass the two Canvas color values to CSS #}
+{% if tertiary or tertiary_hover %}
+  {% set color_style = '' %}
+
+  {% if tertiary %}
+    {% set color_style = color_style ~ '--hero-tertiary: ' ~ tertiary ~ ';' %}
+  {% endif %}
+
+  {% if tertiary_hover %}
+    {% set color_style = color_style ~ '--hero-tertiary-hover: ' ~ tertiary_hover ~ ';' %}
+  {% endif %}
+
+  {% set attributes = attributes.setAttribute('style', color_style) %}
+{% endif %}
+
+{% set attributes = attributes.setAttribute('id', componentMetadata.machineName ~ '-' ~ canvas_uuid) %}
+
+{% if animation %}
+  {% set attributes = attributes.setAttribute('data-aos', animation) %}
+{% endif %}
+
+{% if animation_duration %}
+  {% set attributes = attributes.setAttribute('data-aos-duration', animation_duration) %}
+{% endif %}
+
+{% if not link_attributes %}
+  {% set link_attributes = create_attribute() %}
+{% endif %}
+
+{% if new_tab %}
+  {% set link_attributes = link_attributes.setAttribute('target', '_blank') %}
+{% endif %}
+
+{% if url %}
+  {% set link_attributes = link_attributes.setAttribute('href', url) %}
+  {% set link_attributes = link_attributes.addClass('hero-link') %}
+  <a{{ link_attributes }}>
+{% endif %}
+
+<div {{ attributes }}>
+
+  {# Background image #}
+  {% if bg_image and not bg_video and not bg_youtube_url %}
+    <div class="hero__bg {{ bg_position }}">
+      {% include 'canvas:image' with bg_image|merge({
+        loading: disable_lazy_loading ? 'eager' : 'lazy',
+        class: parallax_effect ? 'parallax__image',
+        attributes: create_attribute({
+          'fetchpriority': disable_lazy_loading ? 'high' : 'auto',
+        })
+      }) only %}
+    </div>
+  {% endif %}
+
+  {# Background video #}
+  {% if bg_video %}
+    <div class="hero__bg {{ bg_position }}">
+      <video
+        class="video video--hero"
+        controls="false"
+        autoplay="true"
+        muted="true"
+        loop="true"
+        fetchpriority="{{ disable_lazy_loading ? 'high' : 'auto' }}"
+        loading="{{ disable_lazy_loading ? 'eager' : 'lazy' }}"
+      >
+        <source src="{{ bg_video.src }}">
+      </video>
+    </div>
+  {% endif %}
+
+  {% if bg_youtube_url %}
+    <div class="hero__bg {{ bg_position }}">
+
+      {% if not iframe_attributes %}
+        {% set iframe_attributes = create_attribute() %}
+      {% endif %}
+
+      {# Set youtube url query parameters #}
+      {% set query_parameters = {} %}
+      {% set query_parameters = query_parameters | merge({'autoplay': 1}) %}
+      {% set query_parameters = query_parameters | merge({'mute': 1}) %}
+      {% set query_parameters = query_parameters | merge({'loop': 1}) %}
+      {% set query_parameters = query_parameters | merge({'disablekb': 1}) %}
+      {% set query_parameters = query_parameters | merge({'modestbranding': 1}) %}
+      {% set query_parameters = query_parameters | merge({'showinfo': 0}) %}
+
+      {% set queryString = query_parameters | url_encode %}
+      {% set bg_youtube_url = bg_youtube_url ~ '?' ~ queryString %}
+
+      {# Set youtube url #}
+      {% set iframe_attributes = iframe_attributes.setAttribute('src', bg_youtube_url) %}
+
+      <iframe{{ iframe_attributes }}></iframe>
+
+    </div>
+  {% endif %}
+
+  {# Overlay #}
+  {% if show_overlay %}
+    <div class="hero__overlay"></div>
+  {% endif %}
+
+  <div class="hero__content-container container">
+
+    {# Content #}
+    <div class="hero__content">
+
+      {% block content %}
+        <h1>Holding Out for a Hero</h1>
+        <p class="lead">'til the end of the night</p>
+
+        <a
+          class="btn btn-primary"
+          href="https://www.azlyrics.com/lyrics/bonnietyler/holdingoutforahero.html"
+          target="_blank"
+        >
+          Learn More
+        </a>
+      {% endblock %}
+
+    </div>
+
+  </div>
+
+  {% if enable_scrolldown %}
+    <button
+      type="button"
+      class="btn btn-primary rounded-circle btn-sm hero__scrolldown text-white"
+      data-scroll-to=".hero-bottom"
+      aria-label="scroll down"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-chevron-down"
+        viewbox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708-.708l-6-6a.5.5 0 0 1 0-.708"
+        />
+      </svg>
+    </button>
+  {% endif %}
+
+</div>
+
+{% if url %}
+  </a>
+{% endif %}
+
+{% if enable_scrolldown %}
+  <div class="hero-bottom"></div>
+{% endif %}

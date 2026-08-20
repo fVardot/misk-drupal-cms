@@ -62,3 +62,8 @@ $enable-gradients: false;
 // Breadcrumbs (Works only on Bootstrap 5+)
 // $breadcrumb-divider: quote(">");
 $enable-caret: true;
+
+:root {
+  --tertiary: #{$tertiary};
+  --tertiary-hover: #{$tertiary-hover};
+}

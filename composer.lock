@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3717fd3b8034c025793f031b60a999e8",
+    "content-hash": "6977b104c8fb34654ef290907c6f7c3e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2325,6 +2325,65 @@
             "homepage": "https://www.drupal.org/project/canvas",
             "support": {
                 "source": "https://git.drupalcode.org/project/canvas"
+            }
+        },
+        {
+            "name": "drupal/canvas_override",
+            "version": "1.0.0-beta3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/canvas_override.git",
+                "reference": "1.0.0-beta3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/canvas_override-1.0.0-beta3.zip",
+                "reference": "1.0.0-beta3",
+                "shasum": "90ed7238859332bd0286f455ecb3302763a4fc66"
+            },
+            "require": {
+                "drupal/canvas": "~1",
+                "drupal/core": "^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0-beta3",
+                    "datestamp": "1786646915",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Vardot",
+                    "homepage": "https://www.drupal.org/vardot",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "mohammed j. razem",
+                    "homepage": "https://www.drupal.org/user/255384"
+                },
+                {
+                    "name": "omar alahmed",
+                    "homepage": "https://www.drupal.org/user/308031"
+                },
+                {
+                    "name": "rajab natshah",
+                    "homepage": "https://www.drupal.org/user/1414312"
+                }
+            ],
+            "description": "Lets site builders enable per-node Canvas-based layout editing on the full content view mode for selected content types.",
+            "homepage": "https://www.drupal.org/project/canvas_override",
+            "support": {
+                "source": "http://cgit.drupalcode.org/canvas_override",
+                "issues": "https://www.drupal.org/project/issues/canvas_override"
             }
         },
         {
@@ -7173,6 +7232,66 @@
             "homepage": "https://www.drupal.org/project/ui_icons",
             "support": {
                 "source": "https://git.drupalcode.org/project/ui_icons"
+            }
+        },
+        {
+            "name": "drupal/vartheme_bs5",
+            "version": "5.0.0-rc4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/vartheme_bs5.git",
+                "reference": "5.0.0-rc4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/vartheme_bs5-5.0.0-rc4.zip",
+                "reference": "5.0.0-rc4",
+                "shasum": "89560a28767af5a90e7c80cb30eab4b71bba4ff6"
+            },
+            "require": {
+                "drupal/canvas": "~1",
+                "drupal/core": "~11.4.0",
+                "drupal/cva": "^1"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "drupal": {
+                    "version": "5.0.0-rc4",
+                    "datestamp": "1786905883",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Vardot",
+                    "homepage": "https://www.drupal.org/vardot",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "mohammed j. razem",
+                    "homepage": "https://www.drupal.org/user/255384"
+                },
+                {
+                    "name": "omar alahmed",
+                    "homepage": "https://www.drupal.org/user/308031"
+                },
+                {
+                    "name": "rajab natshah",
+                    "homepage": "https://www.drupal.org/user/1414312"
+                }
+            ],
+            "description": "Starterkit theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.",
+            "homepage": "https://www.drupal.org/project/vartheme_bs5",
+            "support": {
+                "source": "http://cgit.drupalcode.org/vartheme_bs5",
+                "issues": "http://drupal.org/project/issues/vartheme_bs5"
             }
         },
         {
@@ -14916,15 +15035,17 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "drupal/canvas_override": 10,
         "drupal/sdc_display": 10,
+        "drupal/vartheme_bs5": 5,
         "drupal/webform": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "platform-overrides": {
         "ext-pgsql": "7.4"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }

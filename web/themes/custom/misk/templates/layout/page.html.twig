@@ -250,7 +250,7 @@
 
   <div class="footer-up bg-primary position-relative overflow-hidden">
 
-    {# RIGHT SIDE IMAGE - footer-right-img #}
+    {# RIGHT SIDE IMAGE #}
     <div class="row g-0 position-absolute top-0 bottom-0 start-0 end-0 d-none d-sm-flex">
 
       <div class="col-7"></div>
@@ -267,30 +267,9 @@
 
       <div class="row">
 
-        {# --------------------------------------------------------
-           FOOTER LEFT
-           -------------------------------------------------------- #}
-
         <div class="col-12 col-sm-7 footer-left">
 
-          <div class="row">
-
-            {# FOOTER MENU #}
-            <div class="col-12">
-
-              {{ page.footer_left }}
-
-            </div>
-
-
-            {# FOOTER LEFT IMAGES #}
-            <div class="col-12 d-flex align-items-center gap-3 footer-left-images">
-
-              {{ page.footer_left_images }}
-
-            </div>
-
-          </div>
+          {{ page.footer_left }}
 
         </div>
 
@@ -312,27 +291,17 @@
       <div class="row bar">
 
         {# SOCIAL LINKS #}
-        <div class="d-flex justify-content-center justify-content-sm-start col-12 col-sm-6 gap-3 align-items-center">
+        <div class="footer-social-wrapper d-flex justify-content-center justify-content-sm-start col-12 col-sm-6 align-items-center">
 
           {{ page.footer_bottom }}
 
         </div>
 
 
-        {# POLICY MENU + COPYRIGHT #}
-        <div class="d-flex flex-column flex-sm-row flex-wrap justify-content-center align-items-center justify-content-sm-start col-12 col-sm-6 gap-3 fs-6">
+        {# POLICIES + COPYRIGHT #}
+        <div class="footer-bottom-right d-flex justify-content-center justify-content-sm-start col-12 col-sm-6">
 
-          <div class="d-flex gap-3 justify-content-center">
-
-            {{ page.footer_policies }}
-
-          </div>
-
-          <div>
-
-            {{ page.footer_copyright }}
-
-          </div>
+          {{ page.footer_policies }}
 
         </div>
 
