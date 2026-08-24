@@ -1,0 +1,6 @@
+misk_contact_us.form_results:
+  title: 'Contact Us Form Results'
+  description: 'Configure custom module settings'
+  parent: system.admin_structure
+  route_name: misk_contact_us.result
+  weight: 100

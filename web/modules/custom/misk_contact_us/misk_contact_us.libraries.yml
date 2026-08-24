@@ -1,0 +1,9 @@
+contact_form:
+  css:
+    theme:
+      css/contact-form.css: {}
+
+contact_results:
+  css:
+    theme:
+      css/contact-results.css: {}

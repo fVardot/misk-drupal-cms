@@ -1,0 +1,7 @@
+misk_news.example:
+  path: '/misk-news/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\misk_news\Controller\MiskNewsController'
+  requirements:
+    _permission: 'access content'

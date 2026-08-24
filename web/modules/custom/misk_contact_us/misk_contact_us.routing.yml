@@ -1,0 +1,15 @@
+misk_contact_us.form:
+  path: '/admissions'
+  defaults:
+    _form: '\Drupal\misk_contact_us\Form\ContactForm'
+    _title: 'Contact Us'
+  requirements:
+    _permission: 'access content'
+
+misk_contact_us.result:
+  path: '/admissions/result'
+  defaults:
+    _controller: '\Drupal\misk_contact_us\Controller\ContactUsController::result'
+    _title: 'Form Result'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,84 @@
+<div class="contact-results">
+
+  <div class="contact-results__header">
+    <div>
+      <h1>{{ title }}</h1>
+      <p>All submitted contact forms</p>
+    </div>
+
+    <div class="contact-results__count">
+      {{ submissions|length }}
+      <span>Submissions</span>
+    </div>
+  </div>
+
+  {% if submissions %}
+
+    <div class="contact-results__table-wrapper">
+
+      <table class="contact-results__table">
+
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Message</th>
+            <th>Submitted</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for row in submissions %}
+            <tr>
+              <td>
+                <span class="contact-results__id">
+                  #{{ row.id }}
+                </span>
+              </td>
+
+              <td>
+                <strong>{{ row.name }}</strong>
+              </td>
+
+              <td>
+                <a href="mailto:{{ row.email }}">
+                  {{ row.email }}
+                </a>
+              </td>
+
+              <td>
+                <span class="contact-results__age">
+                  {{ row.age }}
+                </span>
+              </td>
+
+              <td class="contact-results__message">
+                {{ row.message }}
+              </td>
+
+              <td>
+                <span class="contact-results__date">
+                  {{ row.created }}
+                </span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+
+    </div>
+
+  {% else %}
+
+    <div class="contact-results__empty">
+      <div class="contact-results__empty-icon">📭</div>
+      <h2>No submissions yet</h2>
+      <p>There are currently no contact form submissions.</p>
+    </div>
+
+  {% endif %}
+
+</div>

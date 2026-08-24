@@ -1,0 +1,5 @@
+name: Contact Us
+type: module
+description: 'Provides a contact us form for users to reach out to the site administrators.'
+core_version_requirement: ^10 || ^11
+package: Custom
