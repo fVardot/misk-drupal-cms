@@ -1,0 +1,24 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/11.x/core/assets/schemas/v1/metadata.schema.json
+
+name: All News
+status: stable
+description: News card component for displaying a news article.
+
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: Node ID
+
+    title:
+      type: string
+      title: Title
+
+    image:
+      type: string
+      title: Image
+
+    date:
+      type: string
+      title: Date

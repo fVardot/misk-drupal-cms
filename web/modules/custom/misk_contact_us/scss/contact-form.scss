@@ -1,10 +1,7 @@
-/* VARIABLES */
-:root {
-  --tertiary: #e4ecea;
-  --tertiary-hover: #dbeae6;
-}
+@use '../../../../themes/custom/misk/scss/variables' as *;
 
 /* Contact Form */
+
 .contact-us-form {
   width: 100%;
 }
@@ -25,18 +22,16 @@
   box-sizing: border-box;
 }
 
-.contact-us-form input[type=submit] {
+.contact-us-form input[type="submit"] {
   width: auto;
   padding: 10px 25px;
-  background: #00372a;
-  color: #fff;
+  background: $primary;
+  color: $white;
   border: 0;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.contact-us-form input[type=submit]:hover {
-  background: #c2d500;
+.contact-us-form input[type="submit"]:hover {
+  background: $primary-hover;
 }
-
-/*# sourceMappingURL=contact-form.css.map */

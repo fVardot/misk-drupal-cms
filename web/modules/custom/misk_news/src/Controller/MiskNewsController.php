@@ -6,52 +6,62 @@ namespace Drupal\misk_news\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 
-/**
- * Returns responses for Misk news routes.
- */
-final class MiskNewsController extends ControllerBase {
+class MiskNewsController extends ControllerBase {
 
   /**
-   * Builds the response.
+   * Displays all news.
    */
-  public function __invoke(): array {
+  public function news(): array {
+    $config = $this->config('misk_news.settings');
 
-  $query = $this->entityTypeManager()->getStorage('node')->getQuery()
-  ->accessCheck()
-  ->condition('type', 'news')
-  ->condition('status', 1)
-  ->sort('created', 'DESC');
+    $items_per_page = $config->get('items_per_page') ?: 12;
+    $sort = $config->get('sort') ?: 'DESC';
 
-  $node_ids = $query->execute();
-  $nodes = $this->entityTypeManager()->getStorage('node')->loadMultiple($node_ids);
+    $query = $this->entityTypeManager()
+      ->getStorage('node')
+      ->getQuery()
+      ->accessCheck(TRUE)
+      ->condition('type', 'news')
+      ->condition('status', 1)
+      ->sort('created', $sort)
+      ->pager($items_per_page);
 
-  $news = [];
-  $news_card = [];
+    $nids = $query->execute();
 
-  $view_builder = $this->entityTypeManager()->getViewBuilder('node');
+    if (!$nids) {
+      return [
+        '#markup' => $this->t('No news articles found.'),
+      ];
+    }
 
-  foreach ($nodes as $node) {
+    $nodes = $this->entityTypeManager()
+      ->getStorage('node')
+      ->loadMultiple($nids);
 
-    $news[$node->id()] = [];
-    $news[$node->id()]['title'] = [
-      '#markup' => $node->label(),
-    ];
+    $view_builder = $this->entityTypeManager()
+      ->getViewBuilder('node');
 
-    $news[$node->id()]['url'] = $node->get('field_news_url')->view(['label'=>'hidden']);
+    return [
+  '#attached' => [
+    'library' => [
+      'misk_news/news',
+    ],
+  ],
+  'news' => [
+    '#type' => 'container',
+    '#attributes' => [
+      'class' => ['news-grid'],
+    ],
+    'items' => $view_builder->viewMultiple($nodes, 'card'),
+  ],
+  'pager' => [
+    '#type' => 'pager',
+  ],
+  '#cache' => [
+    'tags' => ['config:misk_news.settings'],
+  ],
+];
 
-    $news_card[] = $view_builder->view($node, 'card');
-  }
-
-    $build['content'] = [
-
-      'news' => [
-        '#theme' => 'news_list',
-        '#news' => $news,
-      ],
-      'news_card' => $news_card,
-    ];
-
-    return $build;
   }
 
 }

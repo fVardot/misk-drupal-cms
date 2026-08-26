@@ -7,3 +7,5 @@ contact_results:
   css:
     theme:
       css/contact-results.css: {}
+  js:
+    js/contact-results.js: {}

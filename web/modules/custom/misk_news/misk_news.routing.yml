@@ -1,7 +1,15 @@
-misk_news.example:
-  path: '/misk-news/example'
+misk_news.news:
+  path: '/news'
   defaults:
-    _title: 'Example'
-    _controller: '\Drupal\misk_news\Controller\MiskNewsController'
+    _controller: '\Drupal\misk_news\Controller\MiskNewsController::news'
+    _title: 'All News'
   requirements:
     _permission: 'access content'
+
+misk_news.settings:
+  path: '/admin/config/content/misk-news'
+  defaults:
+    _form: '\Drupal\misk_news\Form\MiskNewsSettingsForm'
+    _title: 'Misk News Settings'
+  requirements:
+    _permission: 'administer site configuration'

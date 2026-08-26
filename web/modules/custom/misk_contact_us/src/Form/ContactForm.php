@@ -45,7 +45,7 @@ class ContactForm extends FormBase {
 
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Send'),
+      '#value' => $this->t('Submit'),
     ];
 
     return $form;

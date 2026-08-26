@@ -32,6 +32,7 @@
         <tbody>
           {% for row in submissions %}
             <tr>
+
               <td>
                 <span class="contact-results__id">
                   #{{ row.id }}
@@ -54,8 +55,29 @@
                 </span>
               </td>
 
+              <!-- Message -->
               <td class="contact-results__message">
-                {{ row.message }}
+
+                <span class="message-short">
+                  {{ row.message[:70] }}{% if row.message|length > 70 %}...{% endif %}
+                </span>
+
+                {% if row.message|length > 70 %}
+
+                  <span class="message-full" style="display: none;">
+                    {{ row.message }}
+                  </span>
+
+                  <button
+                    type="button"
+                    class="message-toggle"
+                    onclick="toggleMessage(this)"
+                  >
+                    Show more
+                  </button>
+
+                {% endif %}
+
               </td>
 
               <td>
@@ -63,6 +85,7 @@
                   {{ row.created }}
                 </span>
               </td>
+
             </tr>
           {% endfor %}
         </tbody>
@@ -82,3 +105,5 @@
   {% endif %}
 
 </div>
+
+

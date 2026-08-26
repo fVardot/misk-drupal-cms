@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Hooks for the Misk News module.
+ */
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function misk_news_preprocess_node(array &$variables): void {
+  if ($variables['view_mode'] !== 'card-news') {
+    return;
+  }
+
+  $node = $variables['node'];
+
+  if (!$node) {
+    return;
+  }
+
+  $variables['news_url'] = $node->toUrl()->toString();
+}

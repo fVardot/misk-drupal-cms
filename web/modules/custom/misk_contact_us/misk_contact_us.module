@@ -5,6 +5,13 @@
  */
 function misk_contact_us_theme($existing, $type, $theme, $path) {
   return [
+    'contact_form_block' => [
+      'variables' => [
+        'form' => NULL,
+      ],
+      'template' => 'contact-form-block',
+    ],
+
     'contact_results' => [
       'template' => 'contact-results',
       'variables' => [

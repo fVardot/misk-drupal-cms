@@ -1,0 +1,13 @@
+name: Contact Form
+status: stable
+description: Contact form component
+
+props:
+  type: object
+  additionalProperties: false
+  properties: {}
+
+slots:
+  form:
+    title: Contact form
+    description: The Drupal contact form.

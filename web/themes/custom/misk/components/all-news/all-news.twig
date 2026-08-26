@@ -1,0 +1,47 @@
+<article class="all-news">
+
+  <a
+    href="{{ path('entity.node.canonical', {'node': id}) }}"
+    class="all-news__link"
+  >
+
+    <div class="all-news__image-wrapper">
+
+      {% if image %}
+        <div class="all-news__image">
+          {{ image }}
+        </div>
+      {% endif %}
+
+      {% if date %}
+        <div class="all-news__date">
+          {% set date_parts = date|split(', ') %}
+          {% set date_without_time = date_parts[1]|split(' - ')|first %}
+          {% set date_values = date_without_time|split(' ') %}
+
+          {{ date_values[1] }} {{ date_values[0] }}, {{ date_values[2] }}
+        </div>
+      {% endif %}
+
+      <div class="all-news__overlay"></div>
+
+    </div>
+
+    <div class="all-news__content">
+
+      {% if title %}
+        <h3 class="all-news__title">
+          {{ title }}
+        </h3>
+      {% endif %}
+
+      <span class="all-news__read-more">
+        <span class="all-news__read-more-text">Read more</span>
+        <span class="all-news__read-more-icon"></span>
+      </span>
+
+    </div>
+
+  </a>
+
+</article>
